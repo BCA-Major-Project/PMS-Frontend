@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css';
-import LoginSignup from './pages/LoginSignup/LoginSignup';
+// import Signup from './pages/LoginSignup/Signup';
+import Signup from './pages/LoginSignup/Signup';
 function App() {
   return (
     <div>
-      <LoginSignup/>
+      <Signup/>
     </div>
   );
 }
-
 export default App;
