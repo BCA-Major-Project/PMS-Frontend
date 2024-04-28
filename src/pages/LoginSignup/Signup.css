@@ -8,20 +8,30 @@
     margin: 5px;
     /* position: absolute; */
 }
+
+.signup{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .container{
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     flex-direction: column;
-    left: 840px;
-    top:150px;
+    margin-top: 10%;
+    /* left: 50%;
+    top:50%;
+    right: 50%; */
     /* margin: auto;
-    margin-top: 200px;
+    
     margin-bottom: 50px; */
     background: #fff;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
     width: 600px;
-    height: 700px;
+    /* height: 700px; */
     border-radius: 10px;
+    /* align-items:center; */
 }
 
 .header{
@@ -78,9 +88,9 @@
 }
 
 .forgot-password{
-    padding-left: 62px;
-    margin-top: 27px;
-    color: #797979;
+    /* margin-top: 15px; */
+    margin-bottom: 10px;
+    color: #7e7979;
     font-size: 18px;
 }
 
@@ -105,6 +115,7 @@ button .submit{
     width: 220px;
     height: 59px;
     color: black;
+    margin:20px;
     /* background: #c0c0c0; */
     border: 1px solid black;
     font-size: 19px;
