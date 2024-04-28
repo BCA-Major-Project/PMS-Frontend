@@ -1,75 +1,87 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-  }
-  
-  .App {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  
-  header {
-    margin-bottom: 20px;
-  }
-  
-  h1, h2, h3 {
-    color: #333;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .links {
-    margin-top: 20px;
-  }
-  
-  .links a {
-    margin: 0 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-  
-  .links a:hover {
-    color: #0056b3;
-  }
-  
-  footer {
-    margin-top: 50px;
-  }
-  
-  footer ul {
-    display: flex;
-    justify-content: center;
-  }
-  
-  footer li {
-    margin: 0 10px;
-    color: #666;
-  }
-  
+  background-color: #f5f5f5; 
+  color: #333;
+  font-family:Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column; 
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f5f5f5; 
+  border-bottom: 3px solid #ccc; 
+  padding-right: 7.8rem;
+  font-size: 1.2rem;
+}
+
+.navbar ul.navbar__nav {
+  list-style: none;
+  margin: 0;
+}
+
+.navbar__nav-item {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0.8rem;
+}
+
+.navbar a {
+  color: #333;
+  text-decoration: none;
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.image-container {
+  display: inline;
+  flex: -1;
+  text-align: center;
+}
+
+.image-container img {
+  margin-top: 5rem;
+  margin-left: 6rem;
+  margin-right: 5rem;
+  width: 625px;
+}
+
+.intro-container {
+  margin-top: 11rem;
+  margin-left: 5rem;
+  justify-content: center; 
+  align-items: center;
+  padding: 2rem; 
+}
+
+.intro-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+.intro-container p {
+  color: #666; 
+  font-size: 1.4rem;
+}
+
+.big-button {
+  background-color: #ddd;  
+  color: black;   
+  font-family: 'DM-sans';  
+  margin-top: 1.5rem;      
+  padding: 20px 40px;    
+  font-size: 25px;        
+  border: none;         
+  border-radius:2rem;     
+  cursor: pointer;       
+}

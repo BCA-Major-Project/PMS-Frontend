@@ -1,17 +1,20 @@
 // import { useState } from 'react'
 import './App.css';
-import OTPGenerate from './pages/LoginSignup/OTPGenerate';
+// import OTPGenerate from './pages/LoginSignup/OTPGenerate';
 
-// import Signup from './pages/LoginSignup/Signup';
+// import Landing from 'src\pages\LoginSignup\Landing.jsx';
+
+import Signup from './pages/LoginSignup/Signup';
 // import Login from './pages/LoginSignup/Login';
 // import Forgotpwd from './pages/LoginSignup/Forgotpwd';
 function App() {
   return (
     <div>
-      {/* <Signup/> */}
+      <Signup/>
       {/* <Login/> */}
       {/* <Forgotpwd/> */}
-      <OTPGenerate/>
+      {/* <OTPGenerate/> */}
+      {/* <Landing/> */}
     </div>
   );
 }
