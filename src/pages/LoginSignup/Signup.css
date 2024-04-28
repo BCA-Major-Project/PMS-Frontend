@@ -1,3 +1,13 @@
+.linkPage{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 1100px;
+}
+.link{
+    margin: 5px;
+    /* position: absolute; */
+}
 .container{
     position: absolute;
     display: flex;
@@ -10,6 +20,7 @@
     background: #fff;
     padding-bottom: 30px;
     width: 600px;
+    height: 700px;
     border-radius: 10px;
 }
 
@@ -39,6 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
+    /* space-between:  */
 }
 
 .input{
@@ -83,20 +95,22 @@
     margin:60px auto;
 }
 
-.submit{
+button .submit{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.submit{
     width: 220px;
     height: 59px;
     color: black;
-    background: #c0c0c0;
+    /* background: #c0c0c0; */
     border: 1px solid black;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    border: none;
-    border-radius: 50px;
+    /* border-radius: 15px; */
 }
 
 
