@@ -9,6 +9,8 @@ import Signup from './pages/LoginSignup/Signup';
 import Login from './pages/LoginSignup/Login';
 import Forgotpwd from './pages/LoginSignup/Forgotpwd';
 import Userdetails from './pages/Admin/Userdetails';
+import AdminHome from './pages/Admin/AdminHome';
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ function App() {
           <Route path="/otp" element={<OTPGenerate/>} />
           <Route path="/userdetails" element={<Userdetails/>} />
           <Route path="/adminlogin" element={<Adminlogin/>} />
+          <Route path="/adminhome" element={<AdminHome/>} />
       </Routes>
     </BrowserRouter>
   );
