@@ -5,6 +5,7 @@ import './Signup.css'
 import user_icon from '../assets/person.png'
 import email_icon from '../assets/email.png'
 import password_icon from '../assets/password.png'
+import { Link } from 'react-router-dom'
 
 const initialValues={
   name: '',
@@ -58,7 +59,7 @@ const addUserDetails=async()=>{
           <formcontrol>
             <button className="submit" onClick={()=>addUserDetails()}>Sign Up</button>
           </formcontrol>
-          <div className="forgot-password">Already got an account? <span>Login</span></div>
+          <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
   )

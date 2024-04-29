@@ -1,6 +1,7 @@
 import {React, useState} from 'react'
 import {addUser} from "../../service/api"
 import './Signup.css'
+import { Link } from 'react-router-dom';
 
 // import user_icon from '../assets/person.png'
 import email_icon from '../assets/email.png'
@@ -42,7 +43,8 @@ const addUserDetails=async()=>{
           <formcontrol>
             <button className="submit" onClick={()=>addUserDetails()}>Submit</button>
           </formcontrol>
-          <div className="forgot-password">Forgot Password? <span>Click Here</span></div>
+          <div className="forgot-password">Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link></div>
+          <div className="forgot-password">Don't have an account? <Link to="/Signup"><span>Register</span></Link></div>
       </div>
     </div>
   )

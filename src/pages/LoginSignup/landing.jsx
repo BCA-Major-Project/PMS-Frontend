@@ -1,6 +1,7 @@
 import React from 'react';
 import './Landing.css';
-import project_img from '../../assets/project_img.png';
+import project_img from '../assets/project_img.png';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
@@ -8,10 +9,10 @@ const Landing = () => {
       <nav className="navbar">
         <ul className="navbar__nav">
           <li className="navbar__nav-item">
-            <a href="#"><h3>Admin Login</h3></a>
+            <Link to="/Admin"><h3>Admin Login</h3></Link>
           </li>
           <li className="navbar__nav-item">
-            <a href="#"><h3>User Login/Sign Up</h3></a>
+            <Link to="/Login"><h3>User Login/Sign Up</h3></Link>
           </li>
         </ul>
       </nav>
