@@ -2,11 +2,13 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './pages/LoginSignup/Landing';
+import Adminlogin from './pages/Admin/Adminlogin';
 
 import OTPGenerate from './pages/LoginSignup/OTPGenerate';
 import Signup from './pages/LoginSignup/Signup';
 import Login from './pages/LoginSignup/Login';
 import Forgotpwd from './pages/LoginSignup/Forgotpwd';
+import Userdetails from './pages/Admin/Userdetails';
 function App() {
   return (
     <BrowserRouter>
@@ -16,13 +18,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/forgotpwd" element={<Forgotpwd/>} />
           <Route path="/otp" element={<OTPGenerate/>} />
-
-
-      {/* <Signup/> */}
-      {/* <Login/> */}
-      {/* <Forgotpwd/> */}
-      {/* <OTPGenerate/> */}
-      {/* <Landing/> */}
+          <Route path="/userdetails" element={<Userdetails/>} />
+          <Route path="/adminlogin" element={<Adminlogin/>} />
       </Routes>
     </BrowserRouter>
   );

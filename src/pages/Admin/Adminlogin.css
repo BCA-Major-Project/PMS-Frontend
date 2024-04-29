@@ -1,0 +1,131 @@
+.linkPage{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 1100px;
+}
+.link{
+    margin: 5px;
+    /* position: absolute; */
+}
+
+.signup{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    /* left: 50%;
+    top:50%;
+    right: 50%; */
+    /* margin: auto;
+    
+    margin-bottom: 50px; */
+    background: #fff;
+    /* padding-bottom: 30px; */
+    width: 600px;
+    /* height: 700px; */
+    border-radius: 10px;
+    /* align-items:center; */
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+.text{
+    color: black;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.underline{
+    width: 61px;
+    height: 6px;
+    background: black;
+    border-radius: 9px;
+}
+
+.inputs{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* space-between:  */
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: #eaeaea;
+    border-radius: 6px;
+}
+
+.input img{
+    margin: 0px 30px;
+}
+
+.input input{
+    height: 50px;
+    width: 400px;
+    background: transparent;
+    border:none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+}
+
+.forgot-password{
+    /* margin-top: 15px; */
+    margin-bottom: 10px;
+    color: #7e7979;
+    font-size: 18px;
+}
+
+.forgot-password span{
+    color: black;
+    cursor: pointer;
+}
+
+.submit-container{
+    display: flex;
+    gap:30px;
+    margin:60px auto;
+}
+
+button .submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit{
+    width: 220px;
+    height: 59px;
+    color: black;
+    margin:20px;
+    /* background: #c0c0c0; */
+    border: 1px solid black;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    /* border-radius: 15px; */
+}
+
+
+.gray{
+    background: #EAEAEA;
+    color: #676767;
+}
