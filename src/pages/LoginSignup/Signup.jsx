@@ -72,9 +72,22 @@ const Signup = () => {
           </formcontrol>
           <formcontrol className="input">
             <img src={email_icon} alt="" />
-            <input type="number" onChange={(e)=> onValueChange(e)} placeholder='Phone no' id='phno'/>
+            <input
+              type="tel"
+              onChange={(e) => {
+                const inputValue = e.target.value;
+                if (inputValue.length > 10) {
+                  e.target.value = inputValue.slice(0, 10); // Limit input to first 10 characters
+                }
+                onValueChange(e);
+              }}
+              placeholder="Phone no"
+              id="phno"
+            />
             <span className="error">{errors['phno']}</span>
-          </formcontrol >
+        </formcontrol>
+
+
           <formcontrol className="input">
             <img src={email_icon} alt="" />
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
