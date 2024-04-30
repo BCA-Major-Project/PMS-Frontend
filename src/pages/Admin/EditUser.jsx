@@ -79,7 +79,19 @@ const EditUser = () => {
         </FormControl>
         <FormControl fullWidth margin="normal">
           <InputLabel className={classes.inputLabel}>Phno</InputLabel>
-          <Input onChange={(e) => onValueChange(e)} name="phno" value={user.phno} />
+          <Input
+              type="tel"
+              onChange={(e) => {
+                const inputValue = e.target.value;
+                if (inputValue.length > 10) {
+                  e.target.value = inputValue.slice(0, 10); // Limit input to first 10 characters
+                }
+                onValueChange(e);
+              }}
+              placeholder="Phone no"
+              id="phno"
+              value={user.phno}
+            />
         </FormControl>
         <FormControl fullWidth margin="normal">
           <TextField
