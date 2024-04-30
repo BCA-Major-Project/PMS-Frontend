@@ -22,7 +22,6 @@ const Landing = () => {
           <p>
           A project management system is like a conductor orchestrating a symphony, ensuring all tasks harmonize towards a successful project completion. It's the digital backbone that organizes, tracks, and streamlines every aspect of a project, from inception to delivery.
           </p>
-          <button className='big-button'>Explore Now</button>
         </div>
         <div className="image-container">
           <img src={project_img} alt="Project Management System" />

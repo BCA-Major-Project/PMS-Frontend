@@ -53,7 +53,6 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      {signupSuccess && <div className="signup-success">Signup Successful!</div>}
       <div className='container'>
         <div className="header">
           <div className="text">Sign up</div>
@@ -90,7 +89,7 @@ const Signup = () => {
         <div className="form-controls">
           <button className="submit" onClick={addUserDetails}>Sign Up</button>
         </div>
-        
+        {signupSuccess && <div className="signup-success">Signup Successful!</div>}
         <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
