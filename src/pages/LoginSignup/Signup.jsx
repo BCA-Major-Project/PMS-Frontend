@@ -35,7 +35,8 @@ const Signup = () => {
   const addUserDetails = async () => {
     if (validateForm()) {
       await addUser(user);
-      setSignupSuccess(true); // Set signup success state to true after successful signup
+      // setSignupSuccess(true);
+      alert `signup succsesful`;
       setUser(initialValues); // Reset form fields
     }
   };
