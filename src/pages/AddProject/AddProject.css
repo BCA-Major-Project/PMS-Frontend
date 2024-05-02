@@ -1,0 +1,26 @@
+.proj{
+  width: 100%;
+  height: 100%;
+  padding: 50px 100px 50px 150px;
+}
+.proj h2{
+  text-align: left;
+}
+.proj .details{
+  margin-top: 40px;
+}
+.proj .details p{
+  margin: 20px 0 5px 0;
+}
+.proj .details input, .proj .details textarea, .proj .details select{
+  height: 35px;
+  width: 100%;
+  padding: 5px;
+  border-color: transparent;
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 5px;
+}
+.proj .details textarea{
+  height: 150px;
+}
+

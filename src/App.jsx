@@ -11,6 +11,8 @@ import Forgotpwd from './pages/LoginSignup/Forgotpwd';
 import Userdetails from './pages/Admin/Userdetails';
 import AdminHome from './pages/Admin/AdminHome';
 import EditUser from './pages/Admin/EditUser';
+import AddProject from './pages/AddProject/AddProject';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/adminlogin" element={<Adminlogin/>} />
           <Route path="/adminhome" element={<AdminHome/>} />
           <Route path="/edit/:id" element={<EditUser/>} />
+          <Route path="/home" element={<Home/>} />
+          <Route path="/addproject" element={<AddProject/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,198 @@
+.outer-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left, .right{
+  width: 20%;
+  height: 100%;
+}
+.left{
+  border-right: 2px solid rgba(196, 194, 194, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  padding: 30px 0 100px 0;
+}
+.right{
+  border-left: 2px solid rgba(196, 194, 194, 0.7);
+}
+.center {
+  width: 80%; /* Adjust the width as needed */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 100px;
+}
+.left .profile{
+    width: 100%;
+    color: black;  
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    flex-direction: column;
+    gap: 10px;
+}
+.left .dp{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: black;
+}
+.left .dp img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover; /* This ensures the image covers the entire container */
+  object-position: top;
+}
+
+.left .btn{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard, .project {
+  width: 180px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dashboard:hover, .project:hover {
+  background-color: rgb(148, 185, 226); /* New background color on hover */
+  border-radius: 5px;
+  font-size: 1.08rem;
+  color: white;
+}
+
+.center .top{
+  width: 100%;
+  color: black;
+   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 50px;
+}
+.center .top .logout{
+  border: 2px solid rgb(148, 185, 226);
+  padding: 8px;
+  margin-top: 5px;
+  background-color: white;
+  color: rgb(148, 185, 226);
+  font-size: 0.88rem;
+  border-radius: 5px;
+}
+.center .top .logout:hover{
+  background-color: rgb(148, 185, 226);
+  color: white;
+  cursor: pointer;
+}
+.center .top .logo{
+  width: 50px;
+  height: 50px;
+  color: black;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+.center .top .logo img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; 
+  object-fit: cover; /* This ensures the image covers the entire container */
+}
+.right .heading{ 
+  text-align: right;
+  padding: 10px;
+  margin: 20px;
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+.center .bottom{
+  width: 100%;
+  padding: 0 50px 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 50px;
+}
+
+.center .bottom .filter{
+  width: 100%;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.center .bottom .filter .filterBy{
+  padding-right: 20px;
+}
+
+.center .bottom .filter .options{
+  padding-right: 10px;
+  border-right: 2px solid rgba(196, 194, 194, 0.7);
+}
+
+.center .bottom .filter .highlight:hover{
+  color: rgb(148, 185, 226);
+  cursor: pointer;
+}
+
+.center .bottom .content{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+}
+
+.center .bottom .content .dabba{
+  width: 256px;
+  height: 140px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.2s ease;
+}
+
+.center .bottom .content .dabba:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
+
+.center .bottom .content .dabba .projName{
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+.center .bottom .content .dabba .date{
+  font-size: 0.7rem;
+  color: rgb(136, 135, 135);
+  margin-bottom: 25px;
+}
+
+.center .bottom .content .dabba .underline{
+  border-color: transparent;
+  background-color: rgba(224, 224, 224, 0.39);
+}
+
+.center .bottom .content .dabba .team{
+  display: flex;
+}
