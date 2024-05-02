@@ -1,0 +1,36 @@
+
+.top{
+    width: 100%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px 0 50px;
+}
+.top .logout{
+    border: 2px solid rgb(148, 185, 226);
+    padding: 8px;
+    margin-top: 5px;
+    background-color: white;
+    color: rgb(148, 185, 226);
+    font-size: 0.88rem;
+    border-radius: 5px;
+}
+.top .logout:hover{
+    background-color: rgb(148, 185, 226);
+    color: white;
+    cursor: pointer;
+}
+.top .logo{
+    width: 50px;
+    height: 50px;
+    color: black;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+.top .logo img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+    object-fit: cover; /* This ensures the image covers the entire container */
+}

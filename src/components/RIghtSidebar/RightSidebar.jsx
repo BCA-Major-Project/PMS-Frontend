@@ -1,4 +1,4 @@
-import '../../pages/Home/Home.css'
+import './RightSidebar.css'
 import Users from '../Users/Users'
 
 function RightBlock() {

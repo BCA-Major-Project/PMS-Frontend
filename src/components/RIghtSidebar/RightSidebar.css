@@ -1,0 +1,10 @@
+.right .heading{ 
+    text-align: right;
+    padding: 10px;
+    margin: 20px;
+}
+.right{
+    width: 20%;
+    height: 100%;
+    border-left: 2px solid rgba(196, 194, 194, 0.7);
+}

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './Home.css'
-import LeftBlock from '../../components/LeftSidebar/LeftBlock.jsx'
-import RightBlock from '../../components/RIghtSidebar/RightBlock.jsx'
-import TopNav from '../../components/Navbar/TopNav.jsx'
+import LeftBlock from '../../components/LeftSidebar/LeftSidebar.jsx'
+import RightBlock from '../../components/RIghtSidebar/RightSidebar.jsx'
+import TopNav from '../../components/Navbar/Navbar.jsx'
 import ProjectCard from '../../components/ProjectCard/ProjectCard.jsx'
 
 function Home() {

@@ -1,5 +1,5 @@
-import '../../pages/Home/Home.css'
-import Member from '../../components/Members/Member'
+import './ProjectCard.css'
+import Member from '../Members/Member'
 
 function ProjectCard() {
     return (

@@ -1,4 +1,4 @@
-import '../../pages/Home/Home.css'
+import './Navbar.css'
 
 function TopNav() {
     return (

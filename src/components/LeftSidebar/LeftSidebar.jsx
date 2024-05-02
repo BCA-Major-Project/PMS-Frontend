@@ -1,4 +1,4 @@
-import '../../pages/Home/Home.css'
+import './LeftSidebar.css'
 
 function LeftBlock() {
     return (
