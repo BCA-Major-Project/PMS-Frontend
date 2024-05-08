@@ -1,4 +1,6 @@
-import '../../pages/Home/Home.css'
+import './AddProject.css'
+import '../../../src/App.css'
+import '../../../style.css'
 
 function AddProject() {
   return (    
