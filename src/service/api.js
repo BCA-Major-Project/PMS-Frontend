@@ -20,14 +20,23 @@ export const getUsers=async()=>{
     }
 }
 
- export const getUser=async(id)=>{
+export const getUser=async(id)=>{
         id=id || '';
         try{
             return await axios.get(`${userUrl}/users/${id}`);
         }catch(error){
             console.log('Error while calling getUsers api',error.message);
         }
+}
+
+export const getLogin=async(email)=>{
+    email=email || '';
+    try{
+        return await axios.get(`${userUrl}/user/${email}`);
+    }catch(error){
+        console.log('Error while calling getUsers api',error.message);
     }
+}
 
 export const editUser=async(user,id)=>{
     try{

@@ -1,7 +1,7 @@
 import {React, useState} from 'react'
-import {addUser} from "../../service/api"
+import {getLogin} from "../../service/api"
 import './Signup.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 // import user_icon from '../assets/person.png'
 import email_icon from '../assets/email.png'
@@ -12,17 +12,38 @@ const initialValues={
   password: ''
   
 }
-const Login = () => {
+
+const Login=()=>{
   const [user,setUser]=useState(initialValues)
+  const {email}=useParams();
   const onValueChange=(e)=>{
-    setUser({...user,[e.target.id]:e.target.value})
-    console.log(user)
+  
+      setUser({...user,[e.target.id]:e.target.value})
+      console.log(user)
+  }
+  const [auth,setAuth]=useState(initialValues)
+  const navigate = useNavigate();
+  const usegetUserRecord=async(email)=>{
+      let response=await getLogin(email);
+    
+      console.log(response);
+      setAuth(response.data);
+      var uemail=auth.email;
+      if(uemail!="")
+      {
+      localStorage.setItem("data",uemail)
+      
+      navigate('/home', { replace: true });
+    
+      }
+      else
+      {
+          navigate('/login', { replace: true });
+      }
+      
 }
 
-const addUserDetails=async()=>{
-  await addUser(user);
 
-}
   return (
     <div className="signup">
     <div className='container'>
@@ -33,7 +54,7 @@ const addUserDetails=async()=>{
       <div className="inputs">
           <formcontrol class="input">
               <img src={email_icon} alt="" />
-              <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
+              <input type="text" onChange={(e)=> onValueChange(e)} placeholder='email' id='email'/>
           </formcontrol >
           <formcontrol class="input">
               <img src={password_icon} alt="" />
@@ -41,7 +62,7 @@ const addUserDetails=async()=>{
           </formcontrol>
       </div>
           <formcontrol>
-            <button className="submit" onClick={()=>addUserDetails()}>Submit</button>
+            <button className="submit" onClick={()=>usegetUserRecord(user.email)}>Submit</button>
           </formcontrol>
           <div className="forgot-password">Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link></div>
           <div className="forgot-password">Don't have an account? <Link to="/Signup"><span>Register</span></Link></div>
