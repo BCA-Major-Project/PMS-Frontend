@@ -1,52 +1,68 @@
-import {React, useState} from 'react'
-import './Adminlogin.css'
-import {addUser} from "../../service/api"
-// import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { addUser, getAdminLogin } from '../../service/api'; // assuming you have these API functions
+import './Adminlogin.css';
+import email_icon from '../assets/email.png';
+import password_icon from '../assets/password.png';
 
-// import user_icon from '../assets/person.png'
-import email_icon from '../assets/email.png'
-import password_icon from '../assets/password.png'
-
-const initialValues={
-  username: '',
-  password: ''
-  
-}
 const Login = () => {
-  const [user,setUser]=useState(initialValues)
-  const onValueChange=(e)=>{
-    setUser({...user,[e.target.id]:e.target.value})
-    console.log(user)
-}
+  const [admin, setAdmin] = useState({ admid: '', password: '' });
+  const navigate = useNavigate();
 
-const addUserDetails=async()=>{
-  await addUser(user);
+  const onValueChange = (e) => {
+    const { admid, value } = e.target;
+    setAdmin({ ...admin, [admid]: value });
+  };
 
-}
+  const addUserDetails = async () => {
+    try {
+      await addUser(admin); // Assuming addUser sends the admin object to the backend for authentication
+      navigate('/adminhome', { replace: true });
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };
+
+  const checkAdminCredentials = async () => {
+    try {
+      const response = await getAdminLogin(admin.admid);
+      console.log(response);
+      const authData = response.data;
+      if (authData && authData.admid !== "") {
+        localStorage.setItem("data", authData.admid);
+        navigate('/adminhome', { replace: true });
+      } else {
+        console.log("Invalid credentials");
+      }
+    }
+   catch (error) {
+      console.error('Error fetching admin credentials:', error);
+    }
+  };
+
   return (
     <div className="signup">
-    <div className='container'>
-      <div className="header">
-        <div className="text">Admin Login</div>
-        <div className="underline"></div>
-      </div>
-      <div className="inputs">
-          <formcontrol class="input">
-              <img src={email_icon} alt="" />
-              <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
-          </formcontrol >
-          <formcontrol class="input">
-              <img src={password_icon} alt="" />
-              <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
-          </formcontrol>
-      </div>
-          <formcontrol>
-            <button className="submit" onClick={()=>addUserDetails()}>Submit</button>
-          </formcontrol>
-         
+      <div className='container'>
+        <div className="header">
+          <div className="text">Admin Login</div>
+          <div className="underline"></div>
+        </div>
+        <div className="inputs">
+          <div className="input">
+            <img src={email_icon} alt="" />
+            <input type="text" onChange={(e)=>onValueChange(e)} placeholder='id' id='id' />
+          </div>
+          <div className="input">
+            <img src={password_icon} alt="" />
+            <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=>onValueChange(e)} />
+          </div>
+        </div>
+        <div className="form-control">
+          <button className="submit" onClick={()=>checkAdminCredentials(admin.admid)}>Submit</button>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

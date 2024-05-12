@@ -2,6 +2,7 @@ import axios from "axios";
 
 const userUrl='http://localhost:8090/pms';
 
+
 export const addUser=async(user)=>{
     try{
         return await axios.post(`${userUrl}/user`,user)
@@ -37,7 +38,14 @@ export const getLogin=async(email)=>{
         console.log('Error while calling getUsers api',error.message);
     }
 }
-
+export const getAdminLogin=async(admid)=>{
+    admid=admid || '';
+    try{
+        return await axios.get(`${userUrl}/admin/login/${admid}`);
+    }catch(error){
+        console.log('Error while calling getUsers api',error.message);
+    }
+}
 export const editUser=async(user,id)=>{
     try{
     return await axios.put(`${userUrl}/user` ,user)
