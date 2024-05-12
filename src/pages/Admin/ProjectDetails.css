@@ -1,0 +1,59 @@
+/* UserDetails.css */
+
+.user-details-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.user-details-heading {
+    position: relative;
+}
+
+.user-details-table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+}
+
+.user-details-table th,
+.user-details-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.user-details-table th {
+    background-color: #f2f2f2;
+}
+.btn{
+    display: flex;
+    flex-direction: row;
+}
+.btn1{
+    margin: 5px;
+    
+}
+.btn2{
+    position: relative;
+    top:4px;
+    
+}
+.user-details-action-btn {
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 8px 16px;
+    margin-right: 10px; 
+}
+.user-details-edit-btn {
+    background-color: purple !important;
+    color: white !important;
+    
+}
+
+.user-details-delete-btn {
+    background-color: red !important;
+    color: white !important;
+}

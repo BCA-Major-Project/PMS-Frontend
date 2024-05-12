@@ -9,6 +9,7 @@ import Signup from './pages/LoginSignup/Signup';
 import Login from './pages/LoginSignup/Login';
 import Forgotpwd from './pages/LoginSignup/Forgotpwd';
 import Userdetails from './pages/Admin/Userdetails';
+import ProjectDetails from './pages/Admin/ProjectDetails';
 import AdminHome from './pages/Admin/AdminHome';
 import EditUser from './pages/Admin/EditUser';
 import AddProject from './pages/AddProject/AddProject';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/forgotpwd" element={<Forgotpwd/>} />
           <Route path="/otp" element={<OTPGenerate/>} />
           <Route path="/userdetails" element={<Userdetails/>} />
+          <Route path="/projectdetails" element={<ProjectDetails/>} />
           <Route path="/adminlogin" element={<Adminlogin/>} />
           <Route path="/adminhome" element={<AdminHome/>} />
           <Route path="/edit/:id" element={<EditUser/>} />

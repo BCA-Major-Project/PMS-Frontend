@@ -64,3 +64,17 @@ export const deleteUser=async(id)=>{
 
     }
 }
+
+
+//project
+
+export const getProject = async()=>{
+    try{
+        return await axios.get(`${userUrl}/projects`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
+
+
+
