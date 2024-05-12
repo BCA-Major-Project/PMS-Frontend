@@ -9,7 +9,7 @@ const Landing = () => {
       <nav className="navbar">
         <ul className="navbar__nav">
           <li className="navbar__nav-item">
-            <Link to="/adminhome"><h3>Admin Login</h3></Link>
+            <Link to="/adminlogin"><h3>Admin Login</h3></Link>
           </li>
           <li className="navbar__nav-item">
             <Link to="/home"><h3>User Login/Sign Up</h3></Link>

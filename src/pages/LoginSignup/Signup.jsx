@@ -100,7 +100,7 @@ const Signup = () => {
             <span className="error">{errors['password']}</span>
           </formcontrol>
         </div>
-        <div className="form-controls">
+        <div className="submit-container">
           <button className="submit" onClick={addUserDetails}>Sign Up</button>
         </div>
         {signupSuccess && <div className="signup-success">Signup Successful!</div>}
