@@ -61,9 +61,11 @@ const Login=()=>{
               <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
           </formcontrol>
       </div>
+      <div className="submit-container">
           <formcontrol>
             <button className="submit" onClick={()=>usegetUserRecord(user.email)}>Submit</button>
           </formcontrol>
+      </div>
           <div className="forgot-password">Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link></div>
           <div className="forgot-password">Don't have an account? <Link to="/Signup"><span>Register</span></Link></div>
       </div>

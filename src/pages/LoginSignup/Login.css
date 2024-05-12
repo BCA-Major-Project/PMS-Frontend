@@ -31,7 +31,7 @@
     width: 600px;
     /* height: 700px; */
     border-radius: 10px;
-    /* align-items:center; */
+    align-items:center;
 }
 
 .header{
@@ -88,6 +88,8 @@
 }
 
 .forgot-password{
+    position: absolute;
+    left: 15px;
     /* margin-top: 15px; */
     margin-bottom: 10px;
     color: #7e7979;

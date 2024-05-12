@@ -1,4 +1,4 @@
-.linkPage{
+/* .linkPage{
     display: flex;
     flex-direction: row;
     position: absolute;
@@ -6,8 +6,8 @@
 }
 .link{
     margin: 5px;
-    /* position: absolute; */
-}
+    position: absolute;
+} */
 
 .signup{
     height: 100%;

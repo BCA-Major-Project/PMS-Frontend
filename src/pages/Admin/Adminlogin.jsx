@@ -25,12 +25,12 @@ const addUserDetails=async()=>{
 }
   return (
     <div className="signup">
-    <div className='container'>
-      <div className="header">
-        <div className="text">Admin Login</div>
-        <div className="underline"></div>
-      </div>
-      <div className="inputs">
+      <div className='container'>
+        <div className="header">
+          <div className="text">Admin Login</div>
+          <div className="underline"></div>
+        </div>
+        <div className="inputs">
           <formcontrol class="input">
               <img src={email_icon} alt="" />
               <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
@@ -39,11 +39,12 @@ const addUserDetails=async()=>{
               <img src={password_icon} alt="" />
               <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
           </formcontrol>
-      </div>
+        </div>
+        <div className='submit-container'>
           <formcontrol>
             <button className="submit" onClick={()=>addUserDetails()}>Submit</button>
           </formcontrol>
-         
+        </div>
       </div>
     </div>
   )
