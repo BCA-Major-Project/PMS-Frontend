@@ -10,8 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onValueChange = (e) => {
-    const { admid, value } = e.target;
-    setAdmin({ ...admin, [admid]: value });
+    setAdmin({...admin,[e.target.id]:e.target.value})
   };
 
   const addUserDetails = async () => {
@@ -50,7 +49,7 @@ const Login = () => {
         <div className="inputs">
           <div className="input">
             <img src={email_icon} alt="" />
-            <input type="text" onChange={(e)=>onValueChange(e)} placeholder='id' id='id' />
+            <input type="text" onChange={(e)=>onValueChange(e)} placeholder='id' id='admid' />
           </div>
           <div className="input">
             <img src={password_icon} alt="" />
