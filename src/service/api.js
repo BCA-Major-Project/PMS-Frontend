@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const userUrl='http://localhost:8090';
+const userUrl='http://localhost:8090/pms';
 
 export const addUser=async(user)=>{
     try{
