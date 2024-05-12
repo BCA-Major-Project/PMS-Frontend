@@ -7,6 +7,19 @@ function RightBlock() {
             <div className='heading'>all users</div>
             <Users />
             <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            <Users />
+            
         </div>
     )
   }
