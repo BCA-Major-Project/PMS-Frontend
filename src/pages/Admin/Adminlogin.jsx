@@ -56,7 +56,7 @@ const Login = () => {
             <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=>onValueChange(e)} />
           </div>
         </div>
-        <div className="submit-container">
+        <div className="form-control">
           <button className="submit" onClick={()=>checkAdminCredentials(admin.admid)}>Submit</button>
         </div>
       </div>
