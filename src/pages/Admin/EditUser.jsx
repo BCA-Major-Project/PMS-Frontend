@@ -44,7 +44,7 @@ const EditUser = () => {
   const classes = useStyles();
   const [user, setUser] = useState(initialValues);
   const { id } = useParams();
-
+  console.log(id);
   useEffect(() => {
     getUserData();
   }, []);

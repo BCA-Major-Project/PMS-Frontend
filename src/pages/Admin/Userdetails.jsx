@@ -79,6 +79,15 @@ const Userdetails = () => {
                                 >
                                     Delete
                                 </Button>
+                                <Button
+                                    component={Link}
+                                    to={`/projectdetails/${user.id}`}
+                                    variant="contained"
+                                    color="primary"
+                                    className="user-details-action-btn user-details-edit-btn"
+                                >
+                                    view projects
+                                </Button>
                                 </div>
                                 </div>
                             </TableCell>

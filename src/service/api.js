@@ -48,7 +48,7 @@ export const getAdminLogin=async(admid)=>{
 }
 export const editUser=async(user,id)=>{
     try{
-    return await axios.put(`${userUrl}/user` ,user)
+    return await axios.put(`${userUrl}/user`,user)
     }catch(error){
         console.log("error while calling update api",error.message);
 
@@ -75,6 +75,27 @@ export const getProject = async()=>{
         console.log('Error while calling getProject api',error.message);
     }
 }
+export const deleteProject=async(uid)=>{
+    try{
+        return await axios.delete(`${userUrl}/projects/${uid}`);
+    }catch(error){
+        console.log("error while calling delete api",error.message);
 
+    }
+}
+export const editProject=async(projects,uid)=>{
+    try{
+    return await axios.put(`${userUrl}/projects`,projects)
+    }catch(error){
+        console.log("error while calling update api",error.message);
 
-
+    }
+}
+export const getProjectById = async(uid)=>{
+    uid=uid || '';
+    try{
+        return await axios.get(`${userUrl}/projects/${uid}`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}

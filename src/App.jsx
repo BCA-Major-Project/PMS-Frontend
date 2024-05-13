@@ -14,7 +14,7 @@ import AdminHome from './pages/Admin/AdminHome';
 import EditUser from './pages/Admin/EditUser';
 import AddProject from './pages/AddProject/AddProject';
 import Home from './pages/Home/Home';
-
+import EditProject from './pages/Admin/EditProject';
 function App() {
   return (
     <BrowserRouter>
@@ -25,10 +25,11 @@ function App() {
           <Route path="/forgotpwd" element={<Forgotpwd/>} />
           <Route path="/otp" element={<OTPGenerate/>} />
           <Route path="/userdetails" element={<Userdetails/>} />
-          <Route path="/projectdetails" element={<ProjectDetails/>} />
+          <Route path="/projectdetails/:uid" element={<ProjectDetails/>} />
           <Route path="/adminlogin" element={<Adminlogin/>} />
           <Route path="/adminhome" element={<AdminHome/>} />
           <Route path="/edit/:id" element={<EditUser/>} />
+          <Route path="/editproject/:id" element={<EditProject/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/addproject" element={<AddProject/>} />
       </Routes>
