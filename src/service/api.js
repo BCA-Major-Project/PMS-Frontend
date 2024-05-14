@@ -12,6 +12,17 @@ export const addUser=async(user)=>{
     }
 
     }
+
+
+    export const addProject=async(project)=>{
+        try{
+            return await axios.post(`${userUrl}/project`,project)
+        }catch(error)
+        {
+            console.log('Error while calling adduser Api ',error.message);
+        }
+    
+        }
 export const getUsers=async()=>{
     
     try{
@@ -30,6 +41,13 @@ export const getUser=async(id)=>{
         }
 }
 
+export const getPublicUsers=async()=>{
+    try{
+        return await axios.get(`${userUrl}/userid`);
+    }catch(error){
+        console.log('Error while calling getPublicUsers api',error.message);
+    }
+}
 export const getLogin=async(email)=>{
     email=email || '';
     try{
@@ -75,6 +93,7 @@ export const getProject = async()=>{
         console.log('Error while calling getProject api',error.message);
     }
 }
+
 export const deleteProject=async(uid)=>{
     try{
         return await axios.delete(`${userUrl}/projects/${uid}`);

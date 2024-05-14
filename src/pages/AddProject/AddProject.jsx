@@ -1,24 +1,17 @@
-import './AddProject.css'
-import '../../../src/App.css'
-import '../../../style.css'
-
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Multiselect } from 'multiselect-react-dropdown';
+import './AddProject.css';
 import { addProject, getPublicUsers } from '../../service/api';
 
-const initialValues = {
-  uid: 3,
-  name: '',
-  details: '',
-  dueDate: '',
-  category: '',
-  assignedTo: ''
-}
-
 const AddProject = () => {
-  const [project, setProject] = useState(initialValues);
+  const [project, setProject] = useState({
+    name: '',
+    details: '',
+    dueDate: '',
+    category: '',
+    assignedTo: []
+  });
   const [users, setUsers] = useState([]);
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     getUsersDetails();
@@ -26,67 +19,91 @@ const AddProject = () => {
 
   const getUsersDetails = async () => {
     try {
-        const response = await getPublicUsers();
-        setUsers(response.data);
+      const response = await getPublicUsers();
+      setUsers(response.data);
     } catch (error) {
-        console.error("Error fetching user details:", error);
+      console.error("Error fetching user details:", error);
     }
   };
-  const onValueChange = (e) => {
-    const { id, value } = e.target;
-    setProject({ ...project, [id]: value });
-  }
-  users.forEach(user => {
-    console.log(user.id);
-  });
-  console.log(project);
-  console.log(users);
-  const addProjectDetails = async () => {
-    
-      await addProject(project);
-      // setSignupSuccess(true);
-      alert(`project added succsesfully`);
-      setProject(initialValues); // Reset form fields
-    
+
+  const handleCategorySelect = (selectedList) => {
+    const assignedToIds = selectedList.map(user => user.id);
+    setProject({ ...project, assignedTo: assignedToIds });
   };
-  return (    
-          <div className='proj'>
-            <h2><b>Create new project</b></h2>
-            <div className='details'>
-              <formcontrol class='input'>
-                <p>Project Name:</p>
-                <input type="text" onChange={(e)=> onValueChange(e)} placeholder='Project Name' id='name'/>
-              </formcontrol>
-              <formcontrol class='input'>
-                <p>Description:</p>
-                <textarea name="description" onChange={(e)=> onValueChange(e)} placeholder='Project Description' id="details" cols="30" rows="10"></textarea>
-              </formcontrol>
-              <formcontrol class='input'>
-                <p>Due Date:</p>
-                <input type="date" onChange={(e)=> onValueChange(e)} id='dueDate'/>
-              </formcontrol>
-              <formcontrol class='input'>
-                <p>Project category:</p>
-                <select onChange={(e)=> onValueChange(e)} id="category" name="category">
-                  <option value="Development">Development</option>
-                  <option value="Design">Design</option>
-                  <option value="Sales">Sales</option>
-                  <option value="Marketing">Marketing</option>
-                </select>
-              </formcontrol>
-              <formcontrol class='input'>
-                <p>Assign to:</p>
-                <select onChange={(e)=> onValueChange(e)} id="assignedTo" name="assignedTo">
-                {users.map(user => (
-                  <option value={user.id}>{user.username}</option>
-                ))}
-                </select>
-              </formcontrol>
-              <button className="submit" onClick={addProjectDetails}>Add</button>
 
-            </div>
-          </div>
-  )
-}
+  const handleCategoryRemove = (removedList) => {
+    const remainingAssignees = project.assignedTo.filter(
+      userId => !removedList.some(removed => removed.id === userId)
+    );
+    setProject({ ...project, assignedTo: remainingAssignees });
+  };
 
-export default AddProject
+  const addProjectDetails = async () => {
+    try {
+      await addProject(project);
+      alert(`Project added successfully`);
+      setProject({
+        name: '',
+        details: '',
+        dueDate: '',
+        category: '',
+        assignedTo: []
+      }); // Reset form fields
+    } catch (error) {
+      console.error("Error adding project:", error);
+    }
+  };
+
+  return (
+    <div class='main'>
+    <div className='proj'>
+      <h2>Create New Project</h2>
+      <div className='details'>
+        <div className='input'>
+          <label htmlFor="projectName">Project Name:</label>
+          <input type="text" value={project.name} onChange={(e) => setProject({ ...project, name: e.target.value })} placeholder='Enter Project Name' />
+        </div>
+
+        <div className='input'>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            value={project.details}
+            onChange={(e) => setProject({ ...project, details: e.target.value })}
+            placeholder='Enter Project Description'
+            rows="2"
+            style={{ backgroundColor: '#eaeaea', padding: '12px', fontSize: '16px', border: '1px solid #ddd', borderRadius: '4px', boxSizing: 'border-box', resize: 'none' }}
+          ></textarea>
+        </div>
+
+        <div className='input'>
+          <label htmlFor="dueDate">Due Date:</label>
+          <input type="date" value={project.dueDate} onChange={(e) => setProject({ ...project, dueDate: e.target.value })} />
+        </div>
+        <div className='input'>
+          <label htmlFor="projectCategory">Project Category:</label>
+          <select value={project.category} onChange={(e) => setProject({ ...project, category: e.target.value })}>
+            <option value="Development">Development</option>
+            <option value="Design">Design</option>
+            <option value="Sales">Sales</option>
+            <option value="Marketing">Marketing</option>
+          </select>
+        </div>
+        <div className='input'>
+          <label htmlFor="assignTo">Assign to:</label>
+          <Multiselect
+            options={users}
+            selectedValues={users.filter(user => project.assignedTo.includes(user.id))}
+            onSelect={handleCategorySelect}
+            onRemove={handleCategoryRemove}
+            displayValue="username"
+            placeholder="Select Assignees"
+          />
+        </div>
+        <div className='add-button'><button className="submit" onClick={addProjectDetails}>Add Project</button></div>
+      </div>
+    </div>
+  </div>
+  );
+};
+
+export default AddProject;
