@@ -1,14 +1,35 @@
-import './Users.css'
+import React, { useState, useEffect } from 'react';
+import './Users.css';
+import { getUsers } from "../../service/api.js";
 
 function Users() {
-    return (
-      <div className='users'>
-        <div className='name'>Munni Badnam</div>
-        <div className='dp'>
-          <img src="https://plus.unsplash.com/premium_photo-1675034345146-99e96fd1a000?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cG9ydHJhaXQlMjBwaG90b2dyYXBoeXxlbnwwfDF8MHx8fDA%3D" alt="" />
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getUsersDetails();
+  }, []);
+
+  const getUsersDetails = async () => {
+    try {
+      const response = await getUsers();
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
+  return (
+    <div className='users'>
+      {users.map((user) => (
+        <div key={user.id} className='user'>
+          <div className='dp'>
+            <div className='circle'></div>
+          </div>
+          <div className='username'>{user.username}</div>
         </div>
-      </div>
-    )
-  }
-  
-  export default Users
+      ))}
+    </div>
+  );
+}
+
+export default Users;
