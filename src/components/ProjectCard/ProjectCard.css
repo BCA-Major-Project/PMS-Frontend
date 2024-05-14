@@ -1,5 +1,5 @@
 .dabba{
-    width: 250px;
+    width: 242px;
     height: 140px;
     background-color: white;
     border-radius: 5px;
@@ -26,6 +26,9 @@
 .dabba .underline{
     border-color: transparent;
     background-color: rgba(224, 224, 224, 0.39);
+    width: 40%;
+    height: 5px;
+    margin-bottom: 20px;
 }
 
 .dabba .team{

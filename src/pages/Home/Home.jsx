@@ -30,10 +30,8 @@ function Home() {
               <ProjectCard />
               <ProjectCard />
               <ProjectCard />
-              <ProjectCard />
-              <ProjectCard />
-              <ProjectCard />
-            </div>
+              <ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard />
+            </div>    
           </div>
         </div>
         <RightBlock />

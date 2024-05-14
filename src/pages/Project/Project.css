@@ -1,0 +1,170 @@
+.outer-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.center {
+  width: 80%; /* Adjust the width as needed */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 100px;
+}
+
+.right .heading {
+  text-align: right;
+  padding: 10px;
+  margin: 20px;
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+.center .down {
+  width: 100%;
+  height: 100%;
+  padding: 0 50px 0 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.down .leftside {
+  width: 60%;
+  height: 55%;
+  max-height: calc(100vh - 200px); /* Set maximum height of .leftside to 100% of viewport height minus 200px */
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+}
+
+.down .leftside .proj-name {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.down .leftside .by {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.down .leftside .date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.down .leftside .detail {
+  color: rgb(136, 135, 135);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.down .leftside .assign-to {
+  font-size: 0.8rem;
+  color: rgb(105, 105, 105);
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.down .leftside .member {
+  margin-top: 10px;
+}
+
+.center .down .rightside {
+  width: 40%;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.down .rightside .show-comments {
+  height: calc(70vh - 200px); /* Set maximum height of .show-comments to 100% of viewport height minus 200px *
+}
+
+
+
+.rightside .show-comments .comment-container {
+  max-height: calc(100vh - 240px); /* Set maximum height of .comment-container to 100% of viewport height minus 240px */
+  overflow-y: auto; /* Enable vertical scrollbar if content exceeds max height */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 10px;
+}
+
+.show-comments .comment-container .comment-box {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  word-wrap: break-word;
+  padding: 10px 10px 0 10px;
+}
+
+.comment-container .comment-box .member-name {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.comment-box .member-name .user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.comment-container .comment-box .comment {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.down .rightside .add-comment {
+  height: 50%;
+  margin-top: 10px;
+}
+
+.add-comment {
+  max-width: 400px;
+  width: 100%;
+}
+
+.add-comment .heading{
+  margin-bottom: 10px;
+}
+
+.add-comment textarea {
+  width: 100%;
+  height: 70px;
+  resize: vertical;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-comment button {
+  border: 2px solid rgb(148, 185, 226);
+  padding: 8px;
+  margin-top: 5px;
+  background-color: white;
+  color: rgb(148, 185, 226);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.add-comment button:hover {
+  background-color: rgb(148, 185, 226);
+  color: white;
+}

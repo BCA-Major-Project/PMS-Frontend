@@ -14,12 +14,12 @@
     background-color: white;
     color: rgb(148, 185, 226);
     font-size: 0.88rem;
+    cursor: pointer;
     border-radius: 5px;
 }
 .top .logout:hover{
     background-color: rgb(148, 185, 226);
     color: white;
-    cursor: pointer;
 }
 .top .logo{
     width: 50px;

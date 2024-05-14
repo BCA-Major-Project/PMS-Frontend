@@ -1,4 +1,4 @@
-.outer-container{
+.outer-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,7 +14,7 @@
   justify-content: start;
   align-items: center;
   gap: 100px;
-  overflow-y: auto;
+  padding-bottom: 50px;
 }
 
 .dashboard, .project {
@@ -31,7 +31,7 @@
   color: white;
 }
 
-.right .heading{ 
+.right .heading { 
   text-align: right;
   padding: 10px;
   margin: 20px;
@@ -39,7 +39,7 @@
 
 /* --------------------------------------------------------------------------------------------------------------- */
 
-.center .bottom{
+.center .bottom {
   width: 100%;
   padding: 0 50px 0 50px;
   display: flex;
@@ -47,9 +47,10 @@
   align-items: start;
   justify-content: start;
   gap: 50px;
+  overflow-y: auto; /* Adding scrollbar for vertical overflow */
 }
 
-.center .bottom .filter{
+.center .bottom .filter {
   width: 100%;
   border: 2px solid transparent;
   border-radius: 5px;
@@ -62,25 +63,28 @@
   font-size: 0.88rem;
 }
 
-.center .bottom .filter .filterBy{
+.center .bottom .filter .filterBy {
   padding-right: 20px;
 }
 
-.center .bottom .filter .options{
+.center .bottom .filter .options {
   padding-right: 10px;
   border-right: 2px solid rgba(196, 194, 194, 0.7);
 }
 
-.center .bottom .filter .highlight:hover{
+.center .bottom .filter .highlight:hover {
   color: rgb(148, 185, 226);
   cursor: pointer;
 }
 
-.center .bottom .content{
+.center .bottom .content {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: start;
   gap: 20px;
+  padding: 0 20px 0 0;
+  overflow-y: auto; /* Adding scrollbar for vertical overflow */
+  overflow-x: hidden;
 }
