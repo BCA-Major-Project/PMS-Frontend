@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to start */
-    padding: 10px 20px; /* Adjust padding */
+    padding: 10px 10rem; /* Adjust padding */
     gap: 10px;
     font-size: 16px;
   }

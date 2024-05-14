@@ -39,7 +39,7 @@ function Users() {
       {!isOnline && <div className='offline-indicator'>You are offline</div>}
       {users.map(user => (
         <div key={user.id} className='user'>
-          <div className='dp'>
+          <div>
             <div className={`circle ${user.online ? 'green' : 'red'}`}></div>
           </div>
           <div className='username'>{user.username}</div>
