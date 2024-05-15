@@ -1,0 +1,121 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.proj {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 8px;
+ 
+}
+
+h1{
+  text-align: left;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+  margin-left:1rem;
+  margin-right:1rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input {
+  margin-bottom: 20px; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  background-color: transparent;
+}
+.input label{
+  margin: 0 0 10px 0;
+
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+textarea,
+select, 
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  background-color: white; /* Background color set to white */
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.multiselect{
+  background-color: white;
+}
+
+.textarea{
+  height: auto;
+}
+
+.textarea textarea{
+  width: 100%;
+  height: 150px;
+  background-color: white;
+}
+
+input[type="date"] {
+  width: 100%;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus,
+input[type="date"]:focus
+{
+  border-color: black; /* Change border color to black when focused */
+  border-width: 2px;
+}
+
+
+input[type="date"]:focus {
+  border-color: black; /* Change border color to black when date input is focused */
+  border-width: 2px;
+}
+
+.add-button{
+  width: 100%;
+}
+
+.add-button button{
+  background-color: white;
+  color: rgb(148, 185, 226);
+  border: 2px solid rgb(148, 185, 226);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0 0 0;
+}
+
+
+button:hover {
+  background-color: rgb(148, 185, 226);
+  color:white;
+}
+

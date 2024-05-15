@@ -41,7 +41,7 @@ function Project() {
                 <p className='heading'>Add comment</p>
                 <form id="comment-form">
                   <textarea id="comment" name="comment" placeholder="Write your comment here..." required></textarea>
-                  <button type="submit">Submit</button>
+                  <button type="submit">Comment</button>
                 </form>
               </div>
             </div>

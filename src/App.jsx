@@ -12,7 +12,6 @@ import Userdetails from './pages/Admin/Userdetails';
 import ProjectDetails from './pages/Admin/ProjectDetails';
 import AdminHome from './pages/Admin/AdminHome';
 import EditUser from './pages/Admin/EditUser';
-import AddProject from './pages/AddProject/AddProject';
 import Home from './pages/Home/Home';
 import EditProject from './pages/Admin/EditProject';
 import Project from './pages/Project/Project';
@@ -32,7 +31,6 @@ function App() {
           <Route path="/edit/:id" element={<EditUser/>} />
           <Route path="/editproject/:id" element={<EditProject/>} />
           <Route path="/home" element={<Home/>} />
-          <Route path="/addproject" element={<AddProject/>} />
           <Route path="/project" element={<Project/>} />
       </Routes>
     </BrowserRouter>
