@@ -99,10 +99,11 @@
     cursor: pointer;
 }
 
-.submit-container{
+.form-control{
     display: flex;
     gap:30px;
     margin:60px auto;
+    
 }
 
 button .submit{
