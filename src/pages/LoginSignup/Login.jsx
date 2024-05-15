@@ -1,76 +1,95 @@
-import {React, useState} from 'react'
-import {getLogin} from "../../service/api"
-import './Signup.css'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { getLogin } from '../../service/api';
+import './Signup.css';
+import { Link, useNavigate } from 'react-router-dom';
+import email_icon from '../assets/email.png';
+import password_icon from '../assets/password.png';
 
-// import user_icon from '../assets/person.png'
-import email_icon from '../assets/email.png'
-import password_icon from '../assets/password.png'
-
-const initialValues={
-  username: '',
-  password: ''
-  
-}
-
-const Login=()=>{
-  const [user,setUser]=useState(initialValues)
-  const {email}=useParams();
-  const onValueChange=(e)=>{
-  
-      setUser({...user,[e.target.id]:e.target.value})
-      console.log(user)
-  }
-  const [auth,setAuth]=useState(initialValues)
+const Login = () => {
+  const [user, setUser] = useState({ email: '', password: '' });
   const navigate = useNavigate();
-  const usegetUserRecord=async(email)=>{
-      let response=await getLogin(email);
-    
-      console.log(response);
-      setAuth(response.data);
-      var uemail=auth.email;
-      if(uemail!="")
-      {
-      localStorage.setItem("data",uemail)
-      
-      navigate('/home', { replace: true });
-    
-      }
-      else
-      {
-          navigate('/login', { replace: true });
-      }
-      
-}
 
+  const onValueChange = (e) => {
+    const { id, value } = e.target;
+    setUser({ ...user, [id]: value });
+  };
+
+  const setLocalStorage = (userData) => {
+    localStorage.setItem("email", userData.email);
+    localStorage.setItem("id", userData.uid); // Assuming 'uid' is the user ID from the response
+    localStorage.setItem("uname", userData.username);
+    localStorage.setItem("phno", userData.phno);
+  };
+
+  console.log("uname",localStorage.getItem("uname"))
+  const handleLogin = async () => {
+    try {
+      const response = await getLogin(user.email);
+      const userData = response.data;
+
+      if (userData && userData.email === user.email && userData.password === user.password) {
+        // Authentication successful, store user data in localStorage
+        setLocalStorage(userData);
+        navigate('/home', { replace: true });
+      } else {
+        // Invalid credentials, navigate back to login
+        alert('Invalid email or password. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error occurred during login:', error);
+      alert('An error occurred during login. Please try again.');
+    }
+  };
+
+  // Use useEffect to log localStorage values after component renders
+  useEffect(() => {
+    console.log("username from login page", localStorage.getItem("uname"));
+  }, []); // Empty dependency array to run this effect only once after initial render
 
   return (
     <div className="signup">
-    <div className='container'>
-      <div className="header">
-        <div className="text">Login</div>
-        <div className="underline"></div>
-      </div>
-      <div className="inputs">
-          <formcontrol class="input">
-              <img src={email_icon} alt="" />
-              <input type="text" onChange={(e)=> onValueChange(e)} placeholder='email' id='email'/>
-          </formcontrol >
-          <formcontrol class="input">
-              <img src={password_icon} alt="" />
-              <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
-          </formcontrol>
-      </div>
-      <div className="submit-container">
-          <formcontrol>
-            <button className="submit" onClick={()=>usegetUserRecord(user.email)}>Submit</button>
-          </formcontrol>
-      </div>
-          <div className="forgot-password">Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link></div>
-          <div className="forgot-password">Don't have an account? <Link to="/Signup"><span>Register</span></Link></div>
+      <div className="container">
+        <div className="header">
+          <div className="text">Login</div>
+          <div className="underline"></div>
+        </div>
+        <div className="inputs">
+          <div className="input">
+            <img src={email_icon} alt="" />
+            <input
+              type="text"
+              placeholder="Email"
+              id="email"
+              value={user.email}
+              onChange={onValueChange}
+            />
+          </div>
+          <div className="input">
+            <img src={password_icon} alt="" />
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              autoComplete="current-password"
+              value={user.password}
+              onChange={onValueChange}
+            />
+          </div>
+        </div>
+        <div className="submit-container">
+          <button className="submit" onClick={handleLogin}>
+            Submit
+          </button>
+        </div>
+        <div className="forgot-password">
+          Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link>
+        </div>
+        <div className="forgot-password">
+          Don't have an account? <Link to="/Signup"><span>Register</span></Link>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
