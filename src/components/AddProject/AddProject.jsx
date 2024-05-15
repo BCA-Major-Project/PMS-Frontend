@@ -63,12 +63,12 @@ const AddProject = () => {
         
         <div className='details'>
 
-          <div className='input'>
+          <div className='input-addProj'>
             <label htmlFor="projectName">Project Name:</label>
             <input type="text" value={project.name} onChange={(e) => setProject({ ...project, name: e.target.value })} placeholder='Enter Project Name' />
           </div>
 
-          <div className='input textarea'>
+          <div className='input-addProj textarea'>
             <label htmlFor="description">Description:</label>
             <textarea
               value={project.details}
@@ -77,12 +77,12 @@ const AddProject = () => {
             ></textarea>
           </div>
 
-          <div className='input'>
+          <div className='input-addProj projDate'>
             <label htmlFor="dueDate">Due Date:</label>
             <input type="date" value={project.dueDate} onChange={(e) => setProject({ ...project, dueDate: e.target.value })} />
           </div>
 
-          <div className='input'>
+          <div className='input-addProj'>
             <label htmlFor="projectCategory">Project Category:</label>
             <select value={project.category} onChange={(e) => setProject({ ...project, category: e.target.value })}>
               <option value="Development">Development</option>
@@ -92,7 +92,7 @@ const AddProject = () => {
             </select>
           </div>
           
-          <div className='input'>
+          <div className='input-addProj'>
             <label htmlFor="assignTo">Assign to:</label>
             <Multiselect
               options={users}

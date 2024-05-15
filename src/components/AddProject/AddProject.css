@@ -32,7 +32,7 @@ label {
   width: 100%;
 }
 
-.input {
+.input-addProj {
   margin-bottom: 20px; 
   width: 100%;
   display: flex;
@@ -41,7 +41,7 @@ label {
   justify-content: start;
   background-color: transparent;
 }
-.input label{
+.input-addProj label{
   margin: 0 0 10px 0;
 
 }
@@ -51,10 +51,10 @@ p {
   margin-bottom: 8px;
 }
 
-input[type="text"],
+.input-addProj input[type="text"],
 textarea,
 select, 
-input[type="date"] {
+.input-addProj input[type="date"] {
   width: 100%;
   padding: 12px;
   font-size: 16px;
@@ -79,21 +79,21 @@ input[type="date"] {
   background-color: white;
 }
 
-input[type="date"] {
+.input-addProj input[type="date"] {
   width: 100%;
 }
 
-input[type="text"]:focus,
+.input-addProj input[type="text"]:focus,
 textarea:focus,
 select:focus,
-input[type="date"]:focus
+.input-addProj input[type="date"]:focus
 {
   border-color: black; /* Change border color to black when focused */
   border-width: 2px;
 }
 
 
-input[type="date"]:focus {
+.input-addProj input[type="date"]:focus {
   border-color: black; /* Change border color to black when date input is focused */
   border-width: 2px;
 }

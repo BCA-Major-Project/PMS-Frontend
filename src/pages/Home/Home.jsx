@@ -14,7 +14,7 @@ function Home() {
         <div className='center common'>
           <TopNav />
           <div className='bottom'>
-            <AddProject />
+            <Dashboard />
           </div>
         </div>
         <RightBlock />
