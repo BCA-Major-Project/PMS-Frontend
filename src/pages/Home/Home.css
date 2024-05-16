@@ -25,9 +25,8 @@
 }
 
 .dashboard:hover, .project:hover {
-  background-color: rgb(148, 185, 226); /* New background color on hover */
+  background-color: #007bff; /* New background color on hover */
   border-radius: 5px;
-  font-size: 1.08rem;
   color: white;
 }
 

@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LeftSidebar.css';
 
 const username = localStorage.getItem('uname');
 
 function LeftBlock({ onAddProjectClick, onDashboardClick }) {
+  const [activePage, setActivePage] = useState('dashboard'); // default to 'dashboard'
+
+  const handleDashboardClick = () => {
+    setActivePage('dashboard');
+    onDashboardClick();
+  };
+
+  const handleAddProjectClick = () => {
+    setActivePage('project');
+    onAddProjectClick();
+  };
+
   return (
     <div className='left common'>
       <div className='profile'>
@@ -16,10 +28,10 @@ function LeftBlock({ onAddProjectClick, onDashboardClick }) {
         <div className='name'>{username}</div>
       </div>
       <div className='btn'>
-        <div className='dashboard' onClick={onDashboardClick}>
+        <div className={`dashboard ${activePage === 'dashboard' ? 'active' : ''}`} onClick={handleDashboardClick}>
           Dashboard
         </div>
-        <div className='project' onClick={onAddProjectClick}>
+        <div className={`project ${activePage === 'project' ? 'active' : ''}`} onClick={handleAddProjectClick}>
           Add Project
         </div>
       </div>
