@@ -4,7 +4,7 @@ import Member from '../Members/Member'
 function ProjectCard() {
     return (
       <div className='dabba'>
-        <p className='projName'>www.bajari-magi.com</p>
+        <p className='projName'>Our Project</p>
         <p className='date'>Budbar May 01 2024</p>
         <hr className='underline'/>
         <div className='team'>
