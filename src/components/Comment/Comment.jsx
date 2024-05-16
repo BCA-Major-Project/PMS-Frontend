@@ -9,9 +9,9 @@ function Comment() {
           <div className='member'>
             <Member />
           </div>
-          <p className='user-name'>Chukki Magi</p>
+          <p className='user-name'>PMS</p>
         </div>
-        <p className='comment'>Maja bhenge deboMaja bhenge deboMaja bhenge deboMaja bhenge deboMaja bhenge deboMaja bhenge debo</p>
+        <p className='comment'>PROJECT MANAGEMENT SYSTEM USING SPRINGBOOT</p>
       </div>
     </div>
     )
