@@ -25,9 +25,9 @@
 }
 
 .dashboard:hover, .project:hover {
-  background-color: #007bff; /* New background color on hover */
+  background-color: #dcdcdc; /* New background color on hover */
   border-radius: 5px;
-  color: white;
+  /* color: white; */
 }
 
 .right .heading { 
