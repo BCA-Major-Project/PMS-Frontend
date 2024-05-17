@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Users.css';
-import { getUsers } from '../../service/api.js';
+import { getPublicUsers } from '../../service/api.js';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -23,7 +23,7 @@ function Users() {
 
   const getUsersDetails = async () => {
     try {
-      const response = await getUsers();
+      const response = await getPublicUsers();
       const updatedUsers = response.data.map(user => ({
         ...user,
         online: true // Assuming online initially based on fetched data
