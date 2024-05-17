@@ -1,8 +1,10 @@
 import React from 'react';
+import { setUserOffline } from '../../service/api';
 import './Navbar.css';
 
 function TopNav() {
   const handleLogout = () => {
+    setUserOffline(localStorage.getItem('uid'))
     localStorage.removeItem('uname'); 
     window.location.href = '/';
   };

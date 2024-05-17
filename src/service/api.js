@@ -11,7 +11,7 @@ export const addUser=async(user)=>{
         console.log('Error while calling adduser Api ',error.message);
     }
 
-    }
+}
 
 
     export const addProject=async(project)=>{
@@ -116,5 +116,22 @@ export const getProjectById = async(uid)=>{
         return await axios.get(`${userUrl}/projects/${uid}`);
     }catch(error){
         console.log('Error while calling getProject api',error.message);
+    }
+}
+
+export const setUserOnline=async(uid)=>{
+    try{
+        return await axios.patch(`${userUrl}/set_user_online/${uid}`,1)
+    }catch(error)
+    {
+        console.log('Error while calling adduser Api ',error.message);
+    }
+}
+export const setUserOffline=async(uid)=>{
+    try{
+        return await axios.patch(`${userUrl}/set_user_online/${uid}`,0)
+    }catch(error)
+    {
+        console.log('Error while calling adduser Api ',error.message);
     }
 }

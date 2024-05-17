@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getLogin } from '../../service/api';
+import { getLogin, setUserOnline } from '../../service/api';
 import './Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import email_icon from '../assets/email.png';
@@ -30,6 +30,7 @@ const Login = () => {
       if (userData && userData.email === user.email && userData.password === user.password) {
         // Authentication successful, store user data in localStorage
         setLocalStorage(userData);
+        setUserOnline(userData.uid)
         navigate('/home', { replace: true });
       } else {
         // Invalid credentials, navigate back to login
