@@ -120,16 +120,18 @@ export const getProjectById = async(uid)=>{
 }
 
 export const setUserOnline=async(uid)=>{
+    data = {"isOnline":1}
     try{
-        return await axios.patch(`${userUrl}/set_user_online/${uid}`,1)
+        return await axios.patch(`${userUrl}/set_user_online/${uid}`,data)
     }catch(error)
     {
         console.log('Error while calling adduser Api ',error.message);
     }
 }
 export const setUserOffline=async(uid)=>{
+    data = {"isOnline" : 0}
     try{
-        return await axios.patch(`${userUrl}/set_user_online/${uid}`,0)
+        return await axios.patch(`${userUrl}/set_user_online/${uid}`,data)
     }catch(error)
     {
         console.log('Error while calling adduser Api ',error.message);
