@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
 import './AddProject.css';
-import { addProject, getPublicUsers } from '../../service/api';
+import { addProject, getUsers, getPublicUsers } from '../../service/api';
 
 const AddProject = () => {
-  const [project, setProject] = useState({
+  const [projectOBJ, setProjectOBJ] = useState({
     name: '',
     details: '',
     dueDate: '',
-    category: '',
-    assignedTo: []
+    category: ''
   });
   const [users, setUsers] = useState([]);
+  const [projectUsers, setProjectUsers] = useState({
+    project : {
+      name: '',
+      details: '',
+      dueDate: '',
+      category: 'sales'
+    },
+    users: []
+  });
 
   useEffect(() => {
     getUsersDetails();
@@ -19,7 +27,8 @@ const AddProject = () => {
 
   const getUsersDetails = async () => {
     try {
-      const response = await getPublicUsers();
+      // const response = await getPublicUsers();
+      const response = await getUsers();
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching user details:", error);
@@ -27,28 +36,45 @@ const AddProject = () => {
   };
 
   const handleCategorySelect = (selectedList) => {
-    const assignedToIds = selectedList.map(user => user.id);
-    setProject({ ...project, assignedTo: assignedToIds });
+    const assignedToIds = selectedList.map(user => user);
+    setProjectUsers({ ...projectUsers, users: assignedToIds });
   };
 
   const handleCategoryRemove = (removedList) => {
-    const remainingAssignees = project.assignedTo.filter(
-      userId => !removedList.some(removed => removed.id === userId)
+    const remainingAssignees = projectUsers.users.filter(
+      user => !removedList.some(removed => removed.id === user.id)
     );
-    setProject({ ...project, assignedTo: remainingAssignees });
+    setProjectUsers({ ...projectUsers, users: remainingAssignees });
   };
 
   const addProjectDetails = async () => {
-    try {
-      await addProject(project);
+    console.log("Raw project without users : ", projectOBJ)
+    setProjectUsers(currentState => ({
+     ...currentState,
+     project: {
+       name: projectOBJ.name,
+       details: projectOBJ.details,
+       dueDate: projectOBJ.dueDate,
+       category: projectOBJ.category
+     }
+   }));   try {
+      await addProject(projectUsers);
       alert(`Project added successfully`);
-      setProject({
+      setProjectOBJ({
         name: '',
         details: '',
         dueDate: '',
-        category: '',
-        assignedTo: []
-      }); // Reset form fields
+        category: ''
+      });
+      setProjectUsers({
+        project : {
+          name: '',
+          details: '',
+          dueDate: '',
+          category: 'sales'
+        },
+        users: []
+      }) // Reset form fields
     } catch (error) {
       console.error("Error adding project:", error);
     }
@@ -65,30 +91,63 @@ const AddProject = () => {
 
           <div className='input-addProj'>
             <label htmlFor="projectName">Project Name:</label>
-            <input type="text" value={project.name} onChange={(e) => setProject({ ...project, name: e.target.value })} placeholder='Enter Project Name' />
-          </div>
+            <input
+  type="text"
+  value={projectUsers.project.name}
+  onChange={(e) => setProjectUsers(currentState => ({
+    ...currentState,
+    project: {
+      ...currentState.project,
+      name: e.target.value
+    }
+
+  }))}
+  
+  placeholder='Enter Project Name'
+/>          </div>
 
           <div className='input-addProj textarea'>
             <label htmlFor="description">Description:</label>
             <textarea
-              value={project.details}
-              onChange={(e) => setProject({ ...project, details: e.target.value })}
+              value={projectUsers.project.details}
+              onChange={(e) => setProjectUsers(currentState => ({
+                ...currentState,
+                project: {
+                  ...currentState.project,
+                  details: e.target.value
+                }
+                
+              }))}
               placeholder='Enter Project Description'
             ></textarea>
           </div>
 
           <div className='input-addProj projDate'>
             <label htmlFor="dueDate">Due Date:</label>
-            <input type="date" value={project.dueDate} onChange={(e) => setProject({ ...project, dueDate: e.target.value })} />
+            <input type="date" value={projectUsers.project.dueDate} onChange={(e) => setProjectUsers(currentState => ({
+    ...currentState,
+    project: {
+      ...currentState.project,
+      dueDate: e.target.value
+    }
+    
+  }))}/>
           </div>
 
           <div className='input-addProj'>
             <label htmlFor="projectCategory">Project Category:</label>
-            <select value={project.category} onChange={(e) => setProject({ ...project, category: e.target.value })}>
-              <option value="Development">Development</option>
-              <option value="Design">Design</option>
-              <option value="Sales">Sales</option>
-              <option value="Marketing">Marketing</option>
+            <select value={projectUsers.project.category} onChange={(e) => setProjectUsers(currentState => ({
+    ...currentState,
+    project: {
+      ...currentState.project,
+      category: e.target.value
+    }
+    
+  }))}>
+              <option value="development">Development</option>
+              <option value="design">Design</option>
+              <option value="sales">Sales</option>
+              <option value="marketing">Marketing</option>
             </select>
           </div>
           
@@ -96,7 +155,7 @@ const AddProject = () => {
             <label htmlFor="assignTo">Assign to:</label>
             <Multiselect
               options={users}
-              selectedValues={users.filter(user => project.assignedTo.includes(user.id))}
+              selectedValues={users.filter(user => projectUsers.users.includes(user))}
               onSelect={handleCategorySelect}
               onRemove={handleCategoryRemove}
               displayValue="username"

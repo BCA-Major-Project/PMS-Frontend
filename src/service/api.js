@@ -17,6 +17,7 @@ export const addUser=async(user)=>{
     export const addProject=async(project)=>{
         try{
             return await axios.post(`${userUrl}/project`,project)
+            // console.log("Your project", project)
         }catch(error)
         {
             console.log('Error while calling adduser Api ',error.message);
@@ -120,7 +121,7 @@ export const getProjectById = async(uid)=>{
 }
 
 export const setUserOnline=async(uid)=>{
-    data = {"isOnline":1}
+    const data = {"isOnline":1}
     try{
         return await axios.patch(`${userUrl}/set_user_online/${uid}`,data)
     }catch(error)
@@ -129,7 +130,7 @@ export const setUserOnline=async(uid)=>{
     }
 }
 export const setUserOffline=async(uid)=>{
-    data = {"isOnline" : 0}
+    const data = {"isOnline" : 0}
     try{
         return await axios.patch(`${userUrl}/set_user_online/${uid}`,data)
     }catch(error)
