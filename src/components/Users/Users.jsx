@@ -4,8 +4,7 @@ import { getPublicUsers } from '../../service/api.js';
 
 function Users() {
   const [users, setUsers] = useState([]);
-  const [isOnline, setIsOnline] = useState(true); // Assume online initially
-
+  const [isOnline, setIsOnline] = useState(true); 
   useEffect(() => {
     getUsersDetails();
     // Check network status periodically
@@ -26,7 +25,6 @@ function Users() {
       const response = await getPublicUsers();
       const updatedUsers = response.data.map(user => ({
         ...user,
-        online: true // Assuming online initially based on fetched data
       }));
       setUsers(updatedUsers);
     } catch (error) {
@@ -40,7 +38,7 @@ function Users() {
       {users.map(user => (
         <div key={user.id} className='user'>
           <div>
-            <div className={`circle ${user.online ? 'green' : 'red'}`}></div>
+            <div className={`circle ${user.isOnline==1 ? 'green' : 'red'}`}></div>
           </div>
           <div className='username'>{user.username}</div>
         </div>

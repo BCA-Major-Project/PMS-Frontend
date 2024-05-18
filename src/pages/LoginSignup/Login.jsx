@@ -16,7 +16,7 @@ const Login = () => {
 
   const setLocalStorage = (userData) => {
     localStorage.setItem("email", userData.email);
-    localStorage.setItem("id", userData.uid); // Assuming 'uid' is the user ID from the response
+    localStorage.setItem("id", userData.id); 
     localStorage.setItem("uname", userData.username);
     localStorage.setItem("phno", userData.phno);
   };
@@ -30,7 +30,7 @@ const Login = () => {
       if (userData && userData.email === user.email && userData.password === user.password) {
         // Authentication successful, store user data in localStorage
         setLocalStorage(userData);
-        setUserOnline(userData.uid)
+        setUserOnline(userData.id)
         navigate('/home', { replace: true });
       } else {
         // Invalid credentials, navigate back to login
@@ -42,10 +42,10 @@ const Login = () => {
     }
   };
 
-  // Use useEffect to log localStorage values after component renders
+  
   useEffect(() => {
     console.log("username from login page", localStorage.getItem("uname"));
-  }, []); // Empty dependency array to run this effect only once after initial render
+  }, []);
 
   return (
     <div className="signup">

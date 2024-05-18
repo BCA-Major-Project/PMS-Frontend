@@ -4,7 +4,7 @@ import './Navbar.css';
 
 function TopNav() {
   const handleLogout = () => {
-    setUserOffline(localStorage.getItem('uid'))
+    setUserOffline(localStorage.getItem('id'))
     localStorage.removeItem('uname'); 
     window.location.href = '/';
   };
