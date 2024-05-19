@@ -16,9 +16,6 @@ function Dashboard() {
                 </div>
                 <div className='content'>
                 <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard /><ProjectCard />
                 </div>    
             </>         
     )

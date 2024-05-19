@@ -1,4 +1,11 @@
-.dabba{
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+  
+  .dabba {
     width: 242px;
     height: 140px;
     background-color: white;
@@ -6,31 +13,33 @@
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
     padding: 15px;
     transition: transform 0.2s ease;
-}
-
-.dabba:hover {
+  }
+  
+  .dabba:hover {
     transform: scale(1.04);
     cursor: pointer;
-}
-
-.dabba .projName{
+  }
+  
+  .dabba .projName {
     font-size: 0.8rem;
     margin-bottom: 5px;
-}
-.dabba .date{
+  }
+  
+  .dabba .date {
     font-size: 0.7rem;
     color: rgb(136, 135, 135);
     margin-bottom: 25px;
-}
-
-.dabba .underline{
+  }
+  
+  .dabba .underline {
     border-color: transparent;
     background-color: rgba(224, 224, 224, 0.39);
     width: 40%;
     height: 5px;
     margin-bottom: 20px;
-}
-
-.dabba .team{
+  }
+  
+  .dabba .team {
     display: flex;
-}
+  }
+  
