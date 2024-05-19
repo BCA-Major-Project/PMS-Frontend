@@ -1,24 +1,30 @@
-import './Dashboard.css'
-import ProjectCard from '../ProjectCard/ProjectCard'
+import React, { useState } from 'react';
+import './Dashboard.css';
+import ProjectCard from '../ProjectCard/ProjectCard';
 
 function Dashboard() {
-    return (
+    const [filter, setFilter] = useState('all');
 
-            <>
-                <div className='filter'>
+    const handleFilterChange = (newFilter) => {
+        setFilter(newFilter);
+    };
+
+    return (
+        <>
+            <div className='filter'>
                 <p className='filterBy'>Filter by:</p>
-                <p className='options highlight'>all</p>
-                <p className='options highlight'>mine</p>
-                <p className='options highlight'>development</p>
-                <p className='options highlight'>design</p>
-                <p className='options highlight'>marketing</p>
-                <p className='highlight'>sales</p>
-                </div>
-                <div className='content'>
-                <ProjectCard />
-                </div>    
-            </>         
-    )
-  }
-  
-  export default Dashboard
+                <p className={`options ${filter === 'all' ? 'highlight' : ''}`} onClick={() => handleFilterChange('all')}>all</p>
+                <p className={`options ${filter === 'mine' ? 'highlight' : ''}`} onClick={() => handleFilterChange('mine')}>mine</p>
+                <p className={`options ${filter === 'development' ? 'highlight' : ''}`} onClick={() => handleFilterChange('development')}>development</p>
+                <p className={`options ${filter === 'design' ? 'highlight' : ''}`} onClick={() => handleFilterChange('design')}>design</p>
+                <p className={`options ${filter === 'marketing' ? 'highlight' : ''}`} onClick={() => handleFilterChange('marketing')}>marketing</p>
+                <p className={`options ${filter === 'sales' ? 'highlight' : ''}`} onClick={() => handleFilterChange('sales')}>sales</p>
+            </div>
+            <div className='content'>
+                <ProjectCard filter={filter} />
+            </div>
+        </>
+    );
+}
+
+export default Dashboard;

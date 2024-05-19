@@ -6,7 +6,7 @@
     justify-content: start;
     gap: 20px;
     padding: 0 20px 0 0;
-    overflow-y: auto; /* Adding scrollbar for vertical overflow */
+    overflow-y: auto; 
     overflow-x: hidden;
   }
   
