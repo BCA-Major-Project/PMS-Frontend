@@ -1,8 +1,13 @@
 .project-list {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
     gap: 20px;
-    justify-content: space-around;
+    padding: 0 20px 0 0;
+    overflow-y: auto; /* Adding scrollbar for vertical overflow */
+    overflow-x: hidden;
   }
   
   .dabba {
