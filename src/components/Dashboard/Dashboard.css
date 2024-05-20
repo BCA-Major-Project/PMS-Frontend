@@ -36,4 +36,12 @@
     overflow-y: auto; /* Adding scrollbar for vertical overflow */
     overflow-x: hidden;
   }
-  
+  .not_found {
+    font-size: 20px;
+    color: grey;
+    position: absolute; /* Absolute positioning */
+    top: 50%;           /* Move the element down 50% from the top */
+    left: 50%;          /* Move the element right 50% from the left */
+    transform: translate(-50%, -50%); /* Center the element by its own width and height */
+    text-align: center; /* Optional: center text inside the element */
+}
