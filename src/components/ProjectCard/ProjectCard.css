@@ -218,13 +218,30 @@
     color: white;
   }
   
+  .back-button-container {
+    display: flex;
+  }
+  
   .back-button {
-    background: none;
-    border: none;
-    color: #767171;
-    font-size: 1rem;
+    background-color: #fff;
+    color: #94b9e2;
+    border: 2px solid #94b9e2;
+    border-radius: 4px; 
     cursor: pointer;
-    margin-bottom: 1rem;
-    position:relative;
-    bottom:21rem;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .back-button svg {
+    margin-right: 8px;
+    font-size: 1.2rem;
+  }
+  
+  .back-button:hover {
+    background-color: #94b9e2;
+    color: #fff;
   }
