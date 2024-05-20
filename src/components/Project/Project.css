@@ -6,7 +6,19 @@
   align-items: center;
   overflow: hidden;
 }
+.back-button{
+  position: relative;
+  bottom:300px;
+}
 
+
+
+
+
+.back-button:hover {
+  background-color: #94b9e2;
+  color: #fff;
+}
 .center {
   width: 80%; /* Adjust the width as needed */
   height: 100%;
