@@ -146,3 +146,23 @@ export const setUserOffline=async(uid)=>{
         console.log('Error while calling adduser Api ',error.message);
     }
 }
+
+//comment
+
+export const getComments = async(pid)=>{
+    try{
+        return await axios.get(`${userUrl}/comments`,pid);
+    }catch(error){
+        console.log('Error while calling getComment api',error.message);
+    }
+}
+
+export const addComment=async(comment)=>{
+    try{
+        return await axios.post(`${userUrl}/comment`,comment)
+    }catch(error)
+    {
+        console.log('Error while calling adduser Api ',error.message);
+    }
+
+}

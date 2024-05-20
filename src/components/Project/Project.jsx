@@ -5,15 +5,18 @@ import Comment from '../../components/Comment/Comment.jsx'
 
 import './Project.css'
 
-function Project() {
+const Project = ({ project }) => {
+  const [currentProject, setCurrentProject] = useState(project);
+  const [comments, setComments] = useState([]);
+
   return (
           <div className='down'>
             <div className='leftside'>
-              <p className='proj-name'>our project</p>
-              <p className='by'>By baishali</p>
-              <p className='date'>Project due by Budbar May 01 2024</p>
-              <p className='detail'>Task take detail a boloooooooo</p>
-              <p className='assign-to'>Project assigned to:</p>
+              <p className='proj-name'>{currentProject.name}</p>
+              <p className='by'>By {currentProject.user.username}</p>
+              <p className='date'>Project due by {currentProject.dueDate}</p>
+              <p className='detail'>{currentProject.details}</p>
+              <p className='assign-to'>Project Category :{currentProject.category}</p>
               <div className='member'>
                 <Member />          
               </div>
