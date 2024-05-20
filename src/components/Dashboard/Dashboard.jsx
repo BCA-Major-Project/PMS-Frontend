@@ -1,16 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
+
+import Project from "../Project/Project"
 import ProjectCard from '../ProjectCard/ProjectCard';
+import { getProjectByCategory, getProjectById, getProject } from '../../service/api';
 
 function Dashboard() {
+    const [user, setUser] = useState();
     const [filter, setFilter] = useState('all');
+    const [projects, setProjects] = useState([]);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     const handleFilterChange = (newFilter) => {
         setFilter(newFilter);
     };
+    const handleProjectSelect = (project) => {
+        setSelectedProject(project);
+    };
+
+    useEffect(() => {
+        const getUserFromStorage = () => {
+            const userDataString = localStorage.getItem("user");
+            setUser(JSON.parse(userDataString));
+        };
+        getUserFromStorage();
+    }, []); // This useEffect runs only once on component mount
+
+    useEffect(() => {
+        const fetchProjects = async (category) => {
+            try {
+                let response;
+                if (category === "all") {
+                    response = await getProject();
+                } else if (category === "mine") {
+                    response = await getProjectById(user?.id);
+                } else {
+                    response = await getProjectByCategory(category);
+                }
+                setProjects(response.data);
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        };
+        if (user) {
+            fetchProjects(filter);
+        }
+    }, [filter, user]); // This useEffect runs when `filter` or `user` changes
 
     return (
-        <>
+    <>
+        {selectedProject === null && (
             <div className='filter'>
                 <p className='filterBy'>Filter by:</p>
                 <p className={`options ${filter === 'all' ? 'highlight' : ''}`} onClick={() => handleFilterChange('all')}>all</p>
@@ -20,11 +59,20 @@ function Dashboard() {
                 <p className={`options ${filter === 'marketing' ? 'highlight' : ''}`} onClick={() => handleFilterChange('marketing')}>marketing</p>
                 <p className={`options ${filter === 'sales' ? 'highlight' : ''}`} onClick={() => handleFilterChange('sales')}>sales</p>
             </div>
-            <div className='content'>
-                <ProjectCard filter={filter} />
-            </div>
-        </>
-    );
+        )}
+        <div className='content'>
+            {selectedProject ? (
+                <Project project={selectedProject} />
+            ) : (
+                projects.map(project => (
+                    <div onClick={() => handleProjectSelect(project)} key={project.id}>
+                        <ProjectCard project={project} />
+                    </div>
+                ))
+            )}
+        </div>
+    </>
+);
 }
 
 export default Dashboard;

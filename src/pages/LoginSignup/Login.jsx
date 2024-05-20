@@ -15,13 +15,10 @@ const Login = () => {
   };
 
   const setLocalStorage = (userData) => {
-    localStorage.setItem("email", userData.email);
-    localStorage.setItem("id", userData.id); 
-    localStorage.setItem("uname", userData.username);
-    localStorage.setItem("phno", userData.phno);
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  console.log("uname",localStorage.getItem("uname"))
+  // console.log("user",localStorage.getItem("user"))
   const handleLogin = async () => {
     try {
       const response = await getLogin(user.email);
@@ -44,7 +41,7 @@ const Login = () => {
 
   
   useEffect(() => {
-    console.log("username from login page", localStorage.getItem("uname"));
+    console.log("username from login page", localStorage.getItem("user"));
   }, []);
 
   return (

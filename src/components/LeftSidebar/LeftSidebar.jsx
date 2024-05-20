@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LeftSidebar.css';
 
-const username = localStorage.getItem('uname');
-
-function LeftBlock({ onAddProjectClick, onDashboardClick }) {
+const LeftBlock = ({ onAddProjectClick, onDashboardClick }) => {
   const [activePage, setActivePage] = useState('dashboard'); // default to 'dashboard'
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    setUsername(user?.username);
+  }, []); // This effect runs only once on component mount
 
   const handleDashboardClick = () => {
     setActivePage('dashboard');

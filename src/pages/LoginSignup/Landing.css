@@ -94,11 +94,11 @@
 
 .button-class {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 1rem;
-  position: absolute;
+  position: absolute; 
   left: 110px;
-  top: 580px;
+  top: 650px;
 }
 
 .btn1, .btn2 {

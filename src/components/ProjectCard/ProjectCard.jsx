@@ -1,43 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './ProjectCard.css';
 import Member from '../Members/Member';
-import { getProject } from '../../service/api.js'; // import the getProject function
+import { getProject } from '../../service/api.js';
 
-function ProjectCard({ filter }) {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await getProject();
-        setProjects(response.data);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  const filteredProjects = projects.filter((project) => {
-    if (filter === 'all') return true;
-    if (filter === 'mine') return project.assignedTo === 'currentUser'; // Adjust this condition based on your logic
-    return project.category === filter;
-  });
+const ProjectCard = ({ project }) => {
+  const [currentProject, setCurrentProject] = useState(project);
+  
 
   return (
-    <div className='project-list'>
-      {filteredProjects.map((project) => (
-        <div className='dabba' key={project.id}>
-          <p className='projName'>{project.name}</p>
-          <p className='date'>{project.details}</p>
-          <hr className='underline'/>
-          <div className='team'>
-            <Member />
+    
+          <div className='dabba' key={currentProject.id} onClick={() => handleProjectClick(currentProject)}>
+            <p className='projName'>{currentProject.name}</p>
+            <p className='date'>{currentProject.details}</p>
+            <hr className='underline'/>
+            <div className='team'>
+              <Member />
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
   );
 }
 

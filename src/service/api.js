@@ -95,6 +95,14 @@ export const getProject = async()=>{
     }
 }
 
+export const getProjectByCategory = async(category)=>{
+    category=category || '';
+    try{
+        return await axios.get(`${userUrl}/projects_by_category/${category}`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
 export const deleteProject=async(uid)=>{
     try{
         return await axios.delete(`${userUrl}/projects/${uid}`);

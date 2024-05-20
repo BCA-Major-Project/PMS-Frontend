@@ -14,7 +14,7 @@ import AdminHome from './pages/Admin/AdminHome';
 import EditUser from './pages/Admin/EditUser';
 import Home from './pages/Home/Home';
 import EditProject from './pages/Admin/EditProject';
-import Project from './pages/Project/Project';
+// import Project from './pages/Project/Project';
 function App() {
   return (
     <BrowserRouter>
@@ -31,7 +31,7 @@ function App() {
           <Route path="/edit/:id" element={<EditUser/>} />
           <Route path="/editproject/:id" element={<EditProject/>} />
           <Route path="/home" element={<Home/>} />
-          <Route path="/project" element={<Project/>} />
+          {/* <Route path="/project" element={<Project/>} /> */}
       </Routes>
     </BrowserRouter>
   );
