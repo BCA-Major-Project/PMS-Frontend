@@ -9,7 +9,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     
-          <div className='dabba' key={currentProject.id} onClick={() => handleProjectClick(currentProject)}>
+          <div className='dabba' key={currentProject.id}>
             <p className='projName'>{currentProject.name}</p>
             <p className='date'>{currentProject.details}</p>
             <hr className='underline'/>

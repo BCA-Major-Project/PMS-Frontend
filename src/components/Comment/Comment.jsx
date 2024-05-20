@@ -1,7 +1,7 @@
 import './Comment.css'
 import Member from '../Members/Member'
 
-function Comment() {
+const Comment = ({ comment }) => {
     return (
       <div className='comment-container'>
       <div className='comment-box'>
@@ -9,9 +9,9 @@ function Comment() {
           <div className='member'>
             <Member />
           </div>
-          <p className='user-name'>PMS</p>
+          <p className='user-name'>{comment.user.username}</p>
         </div>
-        <p className='comment'>PROJECT MANAGEMENT SYSTEM USING SPRINGBOOT</p>
+        <p className='comment'>{comment.comment}</p>
       </div>
     </div>
     )

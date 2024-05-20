@@ -150,8 +150,9 @@ export const setUserOffline=async(uid)=>{
 //comment
 
 export const getComments = async(pid)=>{
+    pid=pid|"";
     try{
-        return await axios.get(`${userUrl}/comments`,pid);
+        return await axios.get(`${userUrl}/comments/${pid}`);
     }catch(error){
         console.log('Error while calling getComment api',error.message);
     }

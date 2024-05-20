@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Member from '../../components/Members/Member.jsx'
 import Comment from '../../components/Comment/Comment.jsx'
-
+import { addComment, getComments } from '../../service/api.js'
 
 import './Project.css'
 
@@ -9,6 +9,19 @@ const Project = ({ project }) => {
   const [currentProject, setCurrentProject] = useState(project);
   const [comments, setComments] = useState([]);
 
+  const getAllComments = async (pid) => {
+    try {
+      const response = await getComments(pid);
+      setComments(response.data);
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+    }
+  };
+  useEffect(() => {
+    getAllComments(currentProject.id);
+  }, [currentProject.id]);
+  comments.forEach(comment => console.log(comment));
+    
   return (
           <div className='down'>
             <div className='leftside'>
@@ -24,13 +37,11 @@ const Project = ({ project }) => {
             <div className='rightside'>
               <p className='heading'>Project comments</p>
               <div className='show-comments'>
-                <div className='comment-container'>
-                  <Comment />
-                  <Comment /> 
-                  <Comment /> 
-                  <Comment /> 
-                  <Comment />
-                </div>
+              <div className='comment-container'>
+                {comments.map((comment, index) => (
+                  <Comment comment={comment} />
+                ))}
+              </div>
               </div>
               <div className='add-comment'>
                 <p className='heading'>Add comment</p>

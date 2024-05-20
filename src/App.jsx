@@ -22,7 +22,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Landing/>} />
           <Route path="/signup" element={<Protected Component={Signup}/>} />
-          <Route path="/login" element={<Protected Component={Login}/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/forgotpwd" element={<Protected Component={Forgotpwd}/>} />
           <Route path="/otp" element={<Protected Component={OTPGenerate}/>} />
           <Route path="/userdetails" element={<Protected Component={Userdetails}/>} />
@@ -31,7 +31,7 @@ function App() {
           <Route path="/adminhome" element={<Protected Component={AdminHome}/>} />
           <Route path="/edit/:id" element={<Protected Component={EditUser}/>} />
           <Route path="/editproject/:id" element={<Protected Component={EditProject}/>} />
-          <Route path="/home" element={<Protected Component={Home}/>} />
+          <Route path="/home" element={<Home/>}/>
           {/* <Route path="/project" element={<Project/>} /> */}
       </Routes>
     </BrowserRouter>
