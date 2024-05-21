@@ -103,14 +103,22 @@ export const getProjectByCategory = async(category)=>{
         console.log('Error while calling getProject api',error.message);
     }
 }
-export const deleteProject=async(uid)=>{
-    try{
-        return await axios.delete(`${userUrl}/projects/${uid}`);
-    }catch(error){
-        console.log("error while calling delete api",error.message);
+// export const deleteProject=async(uid)=>{
+//     try{
+//         return await axios.delete(`${userUrl}/projects/${uid}`);
+//     }catch(error){
+//         console.log("error while calling delete api",error.message);
 
+//     }
+// }
+export const deleteProject = async (id) => {
+    try {
+        return await axios.delete(`${userUrl}/projects/${id}`);
+    } catch (error) {
+        console.log("error while calling delete api", error.message);
     }
-}
+};
+
 export const editProject=async(projects,uid)=>{
     try{
     return await axios.put(`${userUrl}/projects`,projects)
@@ -166,4 +174,23 @@ export const addComment=async(comment)=>{
     {
         console.log('Error while calling adduser Api ',error.message);
     }
+}
+
+// Email-related functions
+// export const getUserEmailById=async(id)=>{
+//     try {
+//         const response = await axios.get(`${userUrl}/user/email/${id}`);
+//         return response.data.email; // Adjust based on your API response structure
+//     } catch (error) {
+//         console.log('Error while calling getUserEmailById API', error.message);
+//     }
+// }
+
+export const sendEmailOTP=async(data)=>{
+    console.log("recieved data", data)
+    // try {
+    //     return await axios.post(`${userUrl}/forgotpwd`, data);
+    // } catch (error) {
+    //     console.log('Error while calling sendEmail API', error.message);
+    // }
 }

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Table, TableHead, TableBody, TableRow, TableCell, Button, Typography, Paper } from "@mui/material";
-import { getProjectById , deleteProject} from "../../service/api.js";
+import { getProjectById , deleteProject } from "../../service/api.js";
 import { Link } from "react-router-dom";
 import "./ProjectDetails.css"; // Import the CSS file
 import { useParams } from "react-router-dom";
 
 const ProjectDetails = () => {
     const [project, setProject] = useState([]);
-    const {uid} = useParams();
-    console.log(uid)
+    const { uid } = useParams();
+    console.log(uid);
+
     useEffect(() => {
         getProjectDetails();
     }, []);
@@ -42,7 +43,6 @@ const ProjectDetails = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        {/* <TableCell>Assigned To</TableCell> */}
                         <TableCell>Category</TableCell>
                         <TableCell>Details</TableCell>
                         <TableCell>Due Date</TableCell>
@@ -55,7 +55,6 @@ const ProjectDetails = () => {
                     {project.map((data) => (
                         <TableRow key={data.id}>
                             <TableCell>{data.id}</TableCell>
-                            {/* <TableCell>{project.assingned_to}</TableCell> */}
                             <TableCell>{data.category}</TableCell>
                             <TableCell>{data.details}</TableCell>
                             <TableCell>{data.due_date}</TableCell>
@@ -64,26 +63,26 @@ const ProjectDetails = () => {
                             <TableCell>
                                 <div className="btn">
                                     <div className="btn1">
-                                <Button
-                                    component={Link}
-                                    to={`/editproject/${data.id}`}
-                                    variant="contained"
-                                    color="primary"
-                                    className="user-details-action-btn user-details-edit-btn"
-                                >
-                                    Edit
-                                </Button>
-                                </div>
-                                <div className="btn2">
-                                <Button
-                                    onClick={() => deleteProjectData(project.uid)}
-                                    variant="contained"
-                                    color="secondary"
-                                    className="user-details-action-btn user-details-delete-btn"
-                                >
-                                    Delete
-                                </Button>
-                                </div>
+                                        <Button
+                                            component={Link}
+                                            to={`/editproject/${data.id}`}
+                                            variant="contained"
+                                            color="primary"
+                                            className="user-details-action-btn user-details-edit-btn"
+                                        >
+                                            Edit
+                                        </Button>
+                                    </div>
+                                    <div className="btn2">
+                                        <Button
+                                            onClick={() => deleteProjectData(data.id)}
+                                            variant="contained"
+                                            color="secondary"
+                                            className="user-details-action-btn user-details-delete-btn"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
                                 </div>
                             </TableCell>
                         </TableRow>
