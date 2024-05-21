@@ -188,9 +188,9 @@ export const addComment=async(comment)=>{
 
 export const sendEmailOTP=async(data)=>{
     console.log("recieved data", data)
-    // try {
-    //     return await axios.post(`${userUrl}/forgotpwd`, data);
-    // } catch (error) {
-    //     console.log('Error while calling sendEmail API', error.message);
-    // }
+    try {
+        return await axios.post(`${userUrl}/forgotpwd`, data);
+    } catch (error) {
+        console.log('Error while calling sendEmail API', error.message);
+    }
 }
