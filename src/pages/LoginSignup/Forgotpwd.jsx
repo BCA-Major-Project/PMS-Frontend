@@ -26,6 +26,7 @@ const Forgotpwd = () => {
 
       if (!response.data) {
         console.log('Not found');
+        setUser({...user, email: ''});
         setError('No user found with that email.'); // Set error message
       } else {
         console.log('user found');
