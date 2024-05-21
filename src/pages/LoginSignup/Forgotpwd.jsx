@@ -6,7 +6,7 @@ import email_icon from '../assets/email.png'
 
 const initialValues = {
     email: '',
-    otp: 0
+    otp: ''
 }
 
 const Forgotpwd = () => {
@@ -77,7 +77,7 @@ const Forgotpwd = () => {
           <formcontrol class="input">
             <img src={email_icon} alt="" />
             <input type="email" onChange={onValueChange} placeholder='Email Id' id='email'/>
-            {error && <div className="error-message">{error}</div>} // Display error message here
+            {error && <div className="error-message">{error}</div>}
           </formcontrol>
         </div>
         <formcontrol>

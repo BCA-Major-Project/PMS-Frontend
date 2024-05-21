@@ -186,11 +186,12 @@ export const addComment=async(comment)=>{
 //     }
 // }
 
-export const sendEmailOTP=async(data)=>{
-    console.log("recieved data", data)
+export const sendEmailOTP = async (data) => {
     try {
-        return await axios.post(`${userUrl}/forgotpwd`, data);
+        console.log("data",data)
+        const response = await axios.post('http://localhost:8090/pms/forgotpwd', data);
+        return response.data; // Adjust based on your API response structure
     } catch (error) {
-        console.log('Error while calling sendEmail API', error.message);
+        console.log('Error while sending email OTP', error.message);
     }
 }
