@@ -65,6 +65,7 @@ export const getAdminLogin=async(admid)=>{
         console.log('Error while calling getUsers api',error.message);
     }
 }
+
 export const editUser=async(user,id)=>{
     try{
     return await axios.put(`${userUrl}/user`,user)
@@ -193,5 +194,16 @@ export const sendEmailOTP = async (data) => {
         return response.data; // Adjust based on your API response structure
     } catch (error) {
         console.log('Error while sending email OTP', error.message);
+    }
+}
+
+// Change Password
+
+export const changePassword = async (userId) => {
+    try {
+        const response = await axios.patch(`${userUrl}/user/newpwd/${userId}`);
+        return response.data; // Adjust based on your API response structure
+    } catch (error) {
+        console.log('Error while calling changePassword API', error.message);
     }
 }

@@ -143,6 +143,7 @@ const Forgotpwd = () => {
     try {
       await sendEmailOTP({ email: user.email, otp });
       console.log('OTP sent:', otp);
+      localStorage.setItem("user_email", user.email);
       alert('OTP has been sent to your email.');
     } catch (error) {
       console.error('Error sending OTP:', error);
