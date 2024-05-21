@@ -9,7 +9,7 @@ import { addProject } from '../../service/api';
 
 const Landing = () => {
   return (
-    <div className='sper-landing'>
+    <div className='super-landing'>
     <div className='main-landing'>
       <div className="landing">
         <nav className="navbar">
@@ -105,9 +105,35 @@ const Landing = () => {
         </div>
       </section>
     </div>
-  </div>
+     </div>
+    </div>
+
+    <div className='footer1'>
+      <div className='tag'>
+        <h2>Move Faster, bulid better</h2>
+        <button className='fbtn'>Get it free</button>
       </div>
     </div>
+    <footer>
+    <div className="footerContainer">
+        <div className="socialIcons">
+        </div>
+        <div className="footerNav">
+            <ul><li><a href="">Home</a></li>
+                <li><a href="">News</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="">our Team</a></li>
+            </ul>
+        </div>
+        
+    </div>
+    <div className="footerBottom">
+        <p>Copyright &copy;2024; Designed by <span className="designer">Group 2</span></p>
+    </div>
+</footer>
+    </div>
+    
     
   );
 };
