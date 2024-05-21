@@ -16,9 +16,9 @@ const Login = () => {
 
   const setLocalStorage = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("isLoggedIn", "true");
   };
 
-  // console.log("user",localStorage.getItem("user"))
   const handleLogin = async () => {
     try {
       const response = await getLogin(user.email);
@@ -27,10 +27,10 @@ const Login = () => {
       if (userData && userData.email === user.email && userData.password === user.password) {
         // Authentication successful, store user data in localStorage
         setLocalStorage(userData);
-        setUserOnline(userData.id)
+        setUserOnline(userData.id);
         navigate('/home', { replace: true });
       } else {
-        // Invalid credentials, navigate back to login
+        // Invalid credentials
         alert('Invalid email or password. Please try again.');
       }
     } catch (error) {
@@ -39,7 +39,6 @@ const Login = () => {
     }
   };
 
-  
   useEffect(() => {
     console.log("username from login page", localStorage.getItem("user"));
   }, []);
