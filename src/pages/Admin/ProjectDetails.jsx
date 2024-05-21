@@ -57,23 +57,13 @@ const ProjectDetails = () => {
                             <TableCell>{data.id}</TableCell>
                             <TableCell>{data.category}</TableCell>
                             <TableCell>{data.details}</TableCell>
-                            <TableCell>{data.due_date}</TableCell>
+                            <TableCell>{data.dueDate}</TableCell>
                             <TableCell>{data.name}</TableCell>
-                            <TableCell>{data.uid}</TableCell>
+                            <TableCell>{data.id}</TableCell>
                             <TableCell>
-                                <div className="btn">
-                                    <div className="btn1">
-                                        <Button
-                                            component={Link}
-                                            to={`/editproject/${data.id}`}
-                                            variant="contained"
-                                            color="primary"
-                                            className="user-details-action-btn user-details-edit-btn"
-                                        >
-                                            Edit
-                                        </Button>
-                                    </div>
-                                    <div className="btn2">
+                           
+                                    
+                                    
                                         <Button
                                             onClick={() => deleteProjectData(data.id)}
                                             variant="contained"
@@ -82,8 +72,7 @@ const ProjectDetails = () => {
                                         >
                                             Delete
                                         </Button>
-                                    </div>
-                                </div>
+                                
                             </TableCell>
                         </TableRow>
                     ))}

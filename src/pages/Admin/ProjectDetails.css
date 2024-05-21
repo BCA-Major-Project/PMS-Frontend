@@ -1,4 +1,4 @@
-/* UserDetails.css */
+/* ProjectDetails.css */
 
 .user-details-container {
     padding: 20px;
@@ -28,32 +28,31 @@
 .user-details-table th {
     background-color: #f2f2f2;
 }
-.btn{
+
+.btn {
     display: flex;
     flex-direction: row;
 }
-.btn1{
+
+.btn1 {
     margin: 5px;
-    
 }
-.btn2{
+
+.btn2 {
     position: relative;
-    top:4px;
-    
+    top: 4px;
 }
+
 .user-details-action-btn {
     border-radius: 20px;
     font-weight: bold;
     padding: 8px 16px;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
-.user-details-edit-btn {
-    background-color: purple !important;
-    color: white !important;
-    
-}
+
 
 .user-details-delete-btn {
     background-color: red !important;
     color: white !important;
+    box-shadow: none; /* Remove the grey shadow */
 }
