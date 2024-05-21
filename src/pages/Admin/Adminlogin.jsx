@@ -29,11 +29,14 @@ const Login = () => {
       const authData = response.data;
       if (authData && authData.admid !== "") {
         localStorage.setItem("data", authData.admid);
+        localStorage.setItem("isLoggedIn", "true");
         navigate('/adminhome', { replace: true });
       } else {
         console.log("Invalid credentials");
       }
     }
+
+
    catch (error) {
       console.error('Error fetching admin credentials:', error);
     }

@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Member from '../../components/Members/Member.jsx';
 import Comment from '../../components/Comment/Comment.jsx';
-import { addComment, getComments } from '../../service/api.js';
+import { addComment as apiAddComment, getComments } from '../../service/api.js';
 import Dashboard from '../../components/Dashboard/Dashboard'; // Import the Dashboard component
 
 import './Project.css';
+import { FormControl } from '@mui/material';
+
+const initialValues = {
+  user:'',
+  project:'',
+  comment:'',
+  insertionTime:''
+};
+
+
 
 const Project = ({ project }) => {
   const [currentProject, setCurrentProject] = useState(project);
   const [comments, setComments] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false); // State to control rendering of Dashboard
+  const [comment,setComment] = useState(initialValues);
 
   const getAllComments = async (pid) => {
     try {
@@ -18,6 +29,10 @@ const Project = ({ project }) => {
     } catch (error) {
       console.error('Error fetching comments:', error);
     }
+  };
+  const onValueChange = (e) => {
+    const { id, value } = e.target;
+    setComment({ ...comment, [id]: value });
   };
 
   useEffect(() => {
@@ -29,8 +44,37 @@ const Project = ({ project }) => {
   };
 
   if (showDashboard) {
-    return <Dashboard />; // Render Dashboard component if showDashboard is true
+    return <Dashboard />; 
   }
+
+  
+  const addComment = async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    const user = JSON.parse(localStorage.getItem("user"));
+    const dateTime = new Date();
+    const formattedDateTime = dateTime.getFullYear() + '-' +
+      ('0' + (dateTime.getMonth() + 1)).slice(-2) + '-' +
+      ('0' + dateTime.getDate()).slice(-2) + ' ' +
+      ('0' + dateTime.getHours()).slice(-2) + ':' +
+      ('0' + dateTime.getMinutes()).slice(-2) + ':' +
+      ('0' + dateTime.getSeconds()).slice(-2)
+      
+    const updatedComment = {
+        ...comment,
+        project: currentProject,
+        user: user,
+        insertionTime: formattedDateTime
+    };
+
+    try {
+        await apiAddComment(updatedComment);
+        setComment(initialValues);
+        getAllComments(currentProject.id);
+    } catch (error) {
+        console.error('Error adding comment:', error);
+    }
+};
+
 
   return (
     <div className="outer-container">
@@ -62,11 +106,18 @@ const Project = ({ project }) => {
             </div>
             <div className="add-comment">
               <p className="heading">Add comment</p>
-              <form id="comment-form">
-                <textarea id="comment" name="comment" placeholder="Write your comment here..." required></textarea>
-                <button type="submit" className="proj-button">Comment</button>
-              </form>
-            </div>
+              <FormControl id="comment-form">
+                  <textarea 
+                      onChange={onValueChange} 
+                      id="comment" 
+                      name="comment" 
+                      value={comment.comment} // Bind textarea value to state
+                      placeholder="Write your comment here..." 
+                      required
+                  ></textarea>
+                  <button onClick={(e) => addComment(e)} className="proj-button">Comment</button>
+              </FormControl>
+          </div>
           </div>
         </div>
       </div>

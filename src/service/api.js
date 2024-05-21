@@ -161,9 +161,9 @@ export const getComments = async(pid)=>{
 export const addComment=async(comment)=>{
     try{
         return await axios.post(`${userUrl}/comment`,comment)
+        // console.log(comment)
     }catch(error)
     {
         console.log('Error while calling adduser Api ',error.message);
     }
-
 }
