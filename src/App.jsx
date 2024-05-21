@@ -16,6 +16,7 @@ import Home from './pages/Home/Home';
 import EditProject from './pages/Admin/EditProject';
 
 import Protected from './components/Protected/Protected'
+import NewPwd from './pages/LoginSignup/NewPwd';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/adminhome" element={<AdminHome/>} />
           <Route path="/edit/:id" element={<EditUser/>} />
           <Route path="/editproject/:id" element={<EditProject/>} />
+          <Route path="/newpwd" element={<NewPwd/>}/>
           <Route path="/home" element={<Protected Component={Home}/>}/>
       </Routes>
     </BrowserRouter>
