@@ -39,7 +39,7 @@ const OTPGenerate = () => {
           </formcontrol>
         </div>
         <formcontrol>
-          <button className="submit" onClick={verifyOtp}>Verify</button>
+          <button className="submitOtp" onClick={verifyOtp}>Verify</button>
         </formcontrol>
       </div>
     </div>

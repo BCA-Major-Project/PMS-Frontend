@@ -105,13 +105,13 @@
     margin:60px auto;
 }
 
-button .submit{
+button .submitOtp{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.submit{
+.submitOtp{
     width: 220px;
     height: 59px;
     color: black;
@@ -121,6 +121,7 @@ button .submit{
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    margin-left: 12rem;
     /* border-radius: 15px; */
 }
 

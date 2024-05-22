@@ -76,7 +76,7 @@ const Forgotpwd = () => {
           </formcontrol>
         </div>
         <formcontrol>
-          <button className="submit" onClick={getUserDetails}>Send OTP</button>
+          <button className="submitForgot" onClick={getUserDetails}>Send OTP</button>
         </formcontrol>
       </div>
     </div>

@@ -70,7 +70,7 @@ const NewPwd = () => {
           </div>
         </div>
         <div className="formcontrol">
-          <button className="submit" onClick={handleSubmit}>Confirm</button>
+          <button className="submitNewPwd" onClick={handleSubmit}>Confirm</button>
         </div>
         {error && <div className="error">{error}</div>}
         {success && <div className="success">{success}</div>}
