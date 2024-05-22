@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NewPwd.css';
 import email_icon from '../assets/email.png';
 
@@ -9,6 +10,8 @@ const NewPwd = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +31,9 @@ const NewPwd = () => {
       
       await editUser(updatedUser, 1);
       setSuccess('Password updated successfully');
+
+      navigate('/login'); 
+
     } catch (error) {
       console.log("Error updating password:", error);
       setError('Failed to update password');
