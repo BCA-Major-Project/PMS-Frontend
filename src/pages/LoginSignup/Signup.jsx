@@ -29,23 +29,24 @@ const Signup = () => {
     setUser({ ...user, [id]: value });
     setErrors({ ...errors, [id]: '' });
   };
-
-  const handleImageChange = (e) => {
+  
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size <= 102400) { // 100KB
         const reader = new FileReader();
-        reader.onloadend = () => {
-          setImagePreviewUrl(reader.result);
+        reader.onloadend = async () => {
+          const base64Image =  reader.result;
+          setImagePreviewUrl(base64Image);
+          console.log("base64String:",base64Image)
+          setUser({ ...user, image: base64Image ? base64Image.split(",")[1] : null }); // Store base64 string in user.image
           setImageError(''); // Clear any previous error
         };
         reader.readAsDataURL(file);
-      } else {
         setImageError('File size should be under 100KB');
       }
     }
   };
-
   const addUserDetails = async () => {
     if (validateForm()) {
       await addUser(user);
@@ -107,7 +108,7 @@ const Signup = () => {
               id="phno"
             />
             <span className="error">{errors['phno']}</span>
-        </formcontrol>
+          </formcontrol>
   
           <formcontrol className="input">
             <img src={email_icon} alt="" />
