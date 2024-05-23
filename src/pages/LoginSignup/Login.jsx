@@ -39,10 +39,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("username from login page", localStorage.getItem("user"));
-  }, []);
-
   return (
     <div className="signup">
       <div className="container">

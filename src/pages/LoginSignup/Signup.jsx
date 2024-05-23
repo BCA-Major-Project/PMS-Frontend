@@ -30,19 +30,27 @@ const Signup = () => {
     setErrors({ ...errors, [id]: '' });
   };
   
+  const convertImageToBase64 = (imageFile) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+      reader.readAsDataURL(imageFile);
+    });
+  };
+
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size <= 102400) { // 100KB
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64Image =  reader.result;
-          setImagePreviewUrl(base64Image);
-          console.log("base64String:",base64Image)
-          setUser({ ...user, image: base64Image ? base64Image.split(",")[1] : null }); // Store base64 string in user.image
-          setImageError(''); // Clear any previous error
-        };
-        reader.readAsDataURL(file);
+        const base64Image = await convertImageToBase64(file);
+        setUser({ ...user, image: base64Image.split(",")[1] });
+        setImagePreviewUrl(base64Image); // Update the image preview URL
+      } else {
         setImageError('File size should be under 100KB');
       }
     }
