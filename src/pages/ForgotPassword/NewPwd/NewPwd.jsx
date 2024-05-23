@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NewPwd.css';
-import email_icon from '../assets/email.png';
+import email_icon from '../../assets/email.png';
+import Modal from '../../../components/Modal/Modal'; // Adjust the path as necessary
 
-import { editUser, getLogin } from '../../service/api';
+import { editUser, getLogin } from '../../../service/api';
 
 const NewPwd = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false); // State for modal visibility
 
   const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
-
+  
     if (newPassword !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-
+  
     try {
       const userEmail = localStorage.getItem("user_email");
       const result = await getLogin(userEmail);
@@ -30,10 +30,8 @@ const NewPwd = () => {
       const updatedUser = { ...user, password: newPassword };
       
       await editUser(updatedUser, 1);
-      setSuccess('Password updated successfully');
-
-      navigate('/login'); 
-
+      setShowSuccessModal(true); // Show success modal instead of setting success message
+  
     } catch (error) {
       console.log("Error updating password:", error);
       setError('Failed to update password');
@@ -73,10 +71,15 @@ const NewPwd = () => {
           <button className="submitNewPwd" onClick={handleSubmit}>Confirm</button>
         </div>
         {error && <div className="error">{error}</div>}
-        {success && <div className="success">{success}</div>}
+        <Modal show={showSuccessModal} title='Password Updated' onClose={() => {
+            setShowSuccessModal(false);
+            navigate('/login'); // Navigate to login after closing the modal
+        }}>
+            <div>Password updated successfully.</div>
+        </Modal>
       </div>
     </div>
   );
-};
+          }
 
 export default NewPwd;

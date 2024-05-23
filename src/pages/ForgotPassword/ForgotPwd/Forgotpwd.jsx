@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getLogin, sendEmailOTP } from "../../service/api";
+import React, { useState } from 'react';
+import { getLogin, sendEmailOTP } from "../../../service/api";
+import Modal from '../../../components/Modal/Modal';
 import './Forgotpwd.css';
-import email_icon from '../assets/email.png';
+import email_icon from '../../assets/email.png';
 import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
@@ -9,56 +10,50 @@ const initialValues = {
   otp: ''
 };
 
-const Forgotpwd = () => {
+const Forgotpwd = ({ onComplete }) => {
+  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState(initialValues);
-  const [error, setError] = useState(''); // State to hold the error message
+  const [error, setError] = useState('');
 
   const navigate = useNavigate(); 
 
   const onValueChange = (e) => {
     setUser({ ...user, [e.target.id]: e.target.value });
-    console.log(user);
   };
 
   const getUserDetails = async () => {
     try {
       const response = await getLogin(user.email);
-      if (!response.data) {
-        console.log('Not found');
-        setUser({ ...user, email: '' });
-        setError('No user found with that email.'); // Set error message
+      if (!response || !response.data) {
+        setError('No user found with that email or error occurred.');
       } else {
-        console.log('user found');
-        setError(''); // Clear error message
         handleForgotPassword();
       }
     } catch (error) {
-      console.error('Error occurred:', error);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again.');
     }
   };
 
   const handleForgotPassword = async () => {
-    // Generate a random 6-digit OTP
+    setLoading(true);
     const otp = Math.floor(100000 + Math.random() * 900000);
-
-    // Store OTP and email in localStorage
     localStorage.setItem('otp', otp);
     localStorage.setItem('email', user.email);
-
-    // Update the user state with the OTP
     setUser({ ...user, otp });
 
     try {
       await sendEmailOTP({ email: user.email, otp });
-      console.log('OTP sent:', otp);
-      localStorage.setItem("user_email", user.email);
-      alert('OTP has been sent to your email.');
-      navigate('/otp'); 
+      setShowModal(true);
+      // onComplete();
     } catch (error) {
-      console.error('Error sending OTP:', error);
       alert('Failed to send OTP. Please try again.');
     }
+    setLoading(false);
+  };
+
+  const handleSubmit = () => {
+    getUserDetails();
   };
 
   return (
@@ -69,15 +64,24 @@ const Forgotpwd = () => {
           <div className="underline"></div>
         </div>
         <div className="inputs">
-          <formcontrol class="input">
+          <formcontrol className="input">
             <img src={email_icon} alt="" />
             <input type="email" onChange={onValueChange} placeholder='Email Id' id='email' />
             {error && <div className="error-message">{error}</div>}
           </formcontrol>
         </div>
-        <formcontrol>
-          <button className="submitForgot" onClick={getUserDetails}>Send OTP</button>
+        <formcontrol style={{ display: 'flex', alignItems: 'center' }}>
+          <button className="submitForgot" onClick={handleSubmit} disabled={loading}>
+            Send OTP
+          </button>
+          {loading && <div className="loader"></div>}
         </formcontrol>
+        <Modal show={showModal} title='OTP Sent' onClose={() => {
+            setShowModal(false);
+            onComplete();  // Invoke onComplete when the modal is closed
+        }}>
+          <div>OTP has been sent to your email.</div>
+        </Modal>
       </div>
     </div>
   );
