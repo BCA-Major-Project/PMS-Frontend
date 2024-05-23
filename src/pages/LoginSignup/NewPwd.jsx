@@ -13,6 +13,12 @@ const NewPwd = () => {
 
   const navigate = useNavigate(); 
 
+  const hashPassword = async (password) => {
+    const saltRounds = 10; // More rounds, more secure and slower
+    const hash = await bcrypt.hash(password, saltRounds);
+    return hash;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -27,7 +33,8 @@ const NewPwd = () => {
       const userEmail = localStorage.getItem("user_email");
       const result = await getLogin(userEmail);
       const user = result.data;
-      const updatedUser = { ...user, password: newPassword };
+      const newHashedPassword = hashPassword(newPassword);
+      const updatedUser = { ...user, password: newHashedPassword };
       
       await editUser(updatedUser, 1);
       setSuccess('Password updated successfully');

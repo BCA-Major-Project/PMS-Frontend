@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import bcrypt from 'bcryptjs';
 import { getLogin, setUserOnline } from '../../service/api';
 import './Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,12 +20,16 @@ const Login = () => {
     localStorage.setItem("isLoggedIn", "true");
   };
 
+  const verifyPassword = async (hashedPassword, providedPassword) => {
+    const isMatch = await bcrypt.compare(providedPassword, hashedPassword);
+    return isMatch;
+  };
   const handleLogin = async () => {
     try {
       const response = await getLogin(user.email);
       const userData = response.data;
 
-      if (userData && userData.email === user.email && userData.password === user.password) {
+      if (userData && userData.email === user.email && verifyPassword(userData.password, user.password)) {
         // Authentication successful, store user data in localStorage
         setLocalStorage(userData);
         setUserOnline(userData.uid);

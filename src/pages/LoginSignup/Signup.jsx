@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import bcrypt from 'bcryptjs';
 import { addUser } from "../../service/api";
 import './Signup.css';
 
@@ -24,10 +25,26 @@ const Signup = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState(defaultAvatar); // Initialize with default image
   const [imageError, setImageError] = useState('');
 
-  const onValueChange = (e) => {
+  const hashPassword = async (password) => {
+    const saltRounds = 10; // More rounds, more secure and slower
+    const hash = await bcrypt.hash(password, saltRounds);
+    return hash;
+  };
+
+  const onValueChange = async(e) => {
     const { id, value } = e.target;
-    setUser({ ...user, [id]: value });
-    setErrors({ ...errors, [id]: '' });
+    if (id === 'phno' && value.length !== 10) {
+      setErrors({ ...errors, [id]: 'Phone number must be 10 digits' });
+    } else if (id === 'email' && !value.includes('@')) {
+      setErrors({ ...errors, [id]: 'Email must contain @ symbol' });
+    } else if (id === 'password') {
+      const hashedPassword = await hashPassword(value);
+      console.log(hashedPassword);
+      setUser({ ...user, [id]: hashedPassword });
+    } else {
+      setErrors({ ...errors, [id]: '' });
+      setUser({ ...user, [id]: value });
+    }
   };
   
   const convertImageToBase64 = (imageFile) => {
