@@ -2,22 +2,18 @@ import React from 'react';
 import './Users.css';
 
 const Users = ({ user }) => {
-    // Check if the user object is properly passed to the component
-    if (!user) {
-        console.log('No user data available');
-        return <div>No user data available</div>;
-    }
 
     const imageData = user.image;
     const username = user.username;
     const isOnline = user.isOnline;
     const id = user.id;
-    
+    const name = user.name;
+
     const getProfileImage = () => {
         if (imageData) {
             return `data:image/jpeg;base64,${imageData}`;
         } else {
-            const nameParams = (username || "Unknown User").split(" ").join("+");
+            const nameParams = (name || "Unknown User").split(" ").join("+");
             return `https://ui-avatars.com/api/?name=${nameParams}&background=random`;
         }
     };
