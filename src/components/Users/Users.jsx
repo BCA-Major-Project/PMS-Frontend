@@ -1,50 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Users.css';
-import { getPublicUsers } from '../../service/api.js';
 
-function Users() {
-  const [users, setUsers] = useState([]);
-  const [isOnline, setIsOnline] = useState(true); 
-  useEffect(() => {
-    getUsersDetails();
-    // Check network status periodically
-    const intervalId = setInterval(() => {
-      checkNetworkStatus();
-    }, 5000); // Check every 5 seconds (adjust interval as needed)
-
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
-  }, []);
-
-  const checkNetworkStatus = () => {
-    const online = navigator.onLine; // Check if browser reports online status
-    setIsOnline(online);
-  };
-
-  const getUsersDetails = async () => {
-    try {
-      const response = await getPublicUsers();
-      const updatedUsers = response.data.map(user => ({
-        ...user,
-      }));
-      setUsers(updatedUsers);
-    } catch (error) {
-      console.error('Error fetching user details:', error);
+const Users = ({ user }) => {
+    // Check if the user object is properly passed to the component
+    if (!user) {
+        console.log('No user data available');
+        return <div>No user data available</div>;
     }
-  };
 
-  return (
-    <div className='users'>
-      {!isOnline && <div className='offline-indicator'>You are offline</div>}
-      {users.map(user => (
-        <div key={user.id} className='user'>
-          <div>
-            <div className={`circle ${user.isOnline==1 ? 'green' : 'red'}`}></div>
-          </div>
-          <div className='username'>{user.username}</div>
+    const imageData = user.image;
+    const username = user.username;
+    const isOnline = user.isOnline;
+    const id = user.id;
+    
+    const getProfileImage = () => {
+        if (imageData) {
+            return `data:image/jpeg;base64,${imageData}`;
+        } else {
+            const nameParams = (username || "Unknown User").split(" ").join("+");
+            return `https://ui-avatars.com/api/?name=${nameParams}&background=random`;
+        }
+    };
+
+    return (
+        <div className='users'>
+            <div key={id} className='user'>
+                <div>
+                    <div className={`circle ${isOnline ? 'green' : 'red'}`}></div>
+                </div>
+                <div className='username'>{username || "Unknown"}</div>
+                <img src={getProfileImage()} alt={`${username || "User"}'s avatar`} />
+            </div>
         </div>
-      ))}
-    </div>
-  );
+    );
 }
 
 export default Users;
