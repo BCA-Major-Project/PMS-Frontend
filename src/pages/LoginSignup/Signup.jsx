@@ -5,6 +5,7 @@ import './Signup.css';
 import user_icon from '../assets/person.png';
 import email_icon from '../assets/email.png';
 import password_icon from '../assets/password.png';
+import defaultAvatar from '../assets/defaultProfile.png'; // Make sure this path is correct
 import { Link } from 'react-router-dom';
 
 const initialValues = {
@@ -12,32 +13,54 @@ const initialValues = {
   email: '',
   phno: '',
   username: '',
-  password: ''
+  password: '',
+  image: ''
 };
 
 const Signup = () => {
   const [user, setUser] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [signupSuccess, setSignupSuccess] = useState(false);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(defaultAvatar); // Initialize with default image
+  const [imageError, setImageError] = useState('');
 
   const onValueChange = (e) => {
     const { id, value } = e.target;
-    if (id === 'phno' && value.length !== 10) {
-      setErrors({ ...errors, [id]: 'Phone number must be 10 digits' });
-    } else if (id === 'email' && !value.includes('@')) {
-      setErrors({ ...errors, [id]: 'Email must contain @ symbol' });
-    } else {
-      setErrors({ ...errors, [id]: '' });
-      setUser({ ...user, [id]: value });
-    }
+    setUser({ ...user, [id]: value });
+    setErrors({ ...errors, [id]: '' });
+  };
+  
+  const convertImageToBase64 = (imageFile) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+      reader.readAsDataURL(imageFile);
+    });
   };
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size <= 102400) { // 100KB
+        const base64Image = await convertImageToBase64(file);
+        setUser({ ...user, image: base64Image.split(",")[1] });
+        setImagePreviewUrl(base64Image); // Update the image preview URL
+      } else {
+        setImageError('File size should be under 100KB');
+      }
+    }
+  };
   const addUserDetails = async () => {
     if (validateForm()) {
       await addUser(user);
-      // setSignupSuccess(true);
-      alert `signup succsesful`;
-      setUser(initialValues); // Reset form fields
+      alert('Signup successful');
+      setUser(initialValues);
+      setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
     }
   };
 
@@ -60,6 +83,13 @@ const Signup = () => {
           <div className="underline"></div>
         </div>
         <div className="inputs">
+          <formcontrol className="input">
+            <label htmlFor="avatar">Profile Picture:</label>
+            <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
+            {imageError && <div className="error">{imageError}</div>}
+            <img src={imagePreviewUrl} alt="Profile Preview" className="profile-preview"/>
+          </formcontrol>
+  
           <formcontrol className="input">
             <img src={user_icon} alt="Name"/>
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='Name' id='name'/>
@@ -86,9 +116,8 @@ const Signup = () => {
               id="phno"
             />
             <span className="error">{errors['phno']}</span>
-        </formcontrol>
-
-
+          </formcontrol>
+  
           <formcontrol className="input">
             <img src={email_icon} alt="" />
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>

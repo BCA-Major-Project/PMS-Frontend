@@ -35,7 +35,7 @@ import './Navbar.css';
 
 function TopNav() {
   const handleLogout = () => {
-    const userId = JSON.parse(localStorage.getItem('user'))?.id;
+    const userId = JSON.parse(localStorage.getItem('user'))?.uid;
     if (userId) {
       setUserOffline(userId);
     }

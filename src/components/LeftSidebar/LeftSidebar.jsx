@@ -4,10 +4,21 @@ import './LeftSidebar.css';
 const LeftBlock = ({ onAddProjectClick, onDashboardClick }) => {
   const [activePage, setActivePage] = useState('dashboard'); // default to 'dashboard'
   const [username, setUsername] = useState('');
+  const [avatar, setAvatar] = useState();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     setUsername(user?.username);
+  
+    if (user?.image) {
+      const imageUrl = `data:image/jpeg;base64,${user.image}`;
+      setAvatar(imageUrl);
+    }
+    else{
+      const nameParams = user.name.split(" ").join("+");
+      const imageUrl= `https://ui-avatars.com/api/?name=${nameParams}&background=random`;
+      setAvatar(imageUrl);
+    }
   }, []); // This effect runs only once on component mount
 
   const handleDashboardClick = () => {
@@ -23,12 +34,9 @@ const LeftBlock = ({ onAddProjectClick, onDashboardClick }) => {
   return (
     <div className='left common'>
       <div className='profile'>
-        <div className='dp'>
-          <img
-            src='https://images.unsplash.com/photo-1603775020644-eb8decd79994?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-            alt=''
-          />
-        </div>
+      <div className='dp'>
+        <img id="user-avatar" src={avatar} alt={`${username}'s avatar`} />
+      </div>
         <div className='name'>{username}</div>
       </div>
       <div className='btn'>
