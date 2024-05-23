@@ -27,7 +27,8 @@ const Login = () => {
       if (userData && userData.email === user.email && userData.password === user.password) {
         // Authentication successful, store user data in localStorage
         setLocalStorage(userData);
-        setUserOnline(userData.id);
+        // setUserOnline(userData.id);
+        console.log("userData id", userData.uid);
         navigate('/home', { replace: true });
       } else {
         // Invalid credentials
