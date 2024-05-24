@@ -139,3 +139,9 @@ button .submit{
     border: 1px solid #ccc; /* Optional: adds a border around the image */
     box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for better visibility */
 }
+
+.error-messages {
+    color: red;
+    margin-top: 20px; /* Adjust spacing as needed */
+    font-size: 14px; /* Adjust font size as needed */
+}

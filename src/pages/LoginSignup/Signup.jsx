@@ -57,21 +57,35 @@ const Signup = () => {
   };
   const addUserDetails = async () => {
     if (validateForm()) {
-      await addUser(user);
-      alert('Signup successful');
-      setUser(initialValues);
-      setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
+      try {
+        const response = await addUser(user);
+        console.log('Response:', response);
+        alert('Signup successful');
+        setUser(initialValues);
+        setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
+      } catch (error) {
+        console.error('Error during signup:', error);
+      }
     }
   };
 
   const validateForm = () => {
     let formIsValid = true;
+    const newErrors = {};
+    console.log("validating form");
+  
     for (const key in user) {
-      if (!user[key]) {
-        setErrors({ ...errors, [key]: `${key} is required` });
+      console.log("Checking key:", key); // Log each key being checked
+      if (key !== 'image' && !user[key]) {
+        newErrors[key] = `${key} is required`;
         formIsValid = false;
+        console.log("Error found in key:", key); // Log if an error is found
       }
     }
+  
+    console.log("Errors after loop:", newErrors); // Log all errors found
+    setErrors(newErrors);
+    console.log("Form is valid:", formIsValid); // Final validity status
     return formIsValid;
   };
 
@@ -83,13 +97,13 @@ const Signup = () => {
           <div className="underline"></div>
         </div>
         <div className="inputs">
-          <formcontrol className="input">
+        <formcontrol className="input">
             <label htmlFor="avatar">Profile Picture:</label>
             <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
             {imageError && <div className="error">{imageError}</div>}
             <img src={imagePreviewUrl} alt="Profile Preview" className="profile-preview"/>
           </formcontrol>
-  
+
           <formcontrol className="input">
             <img src={user_icon} alt="Name"/>
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='Name' id='name'/>
@@ -101,6 +115,7 @@ const Signup = () => {
             <input type="email" onChange={(e)=> onValueChange(e)} placeholder='Email Id' id='email'/>
             <span className="error">{errors['email']}</span>
           </formcontrol>
+  
           <formcontrol className="input">
             <img src={email_icon} alt="" />
             <input
@@ -122,12 +137,15 @@ const Signup = () => {
             <img src={email_icon} alt="" />
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
             <span className="error">{errors['username']}</span>
-          </formcontrol >
+          </formcontrol>
+  
           <formcontrol className="input">
             <img src={password_icon} alt="" />
             <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
             <span className="error">{errors['password']}</span>
           </formcontrol>
+  
+          
         </div>
         <div className="submit-container">
           <button className="submit" onClick={addUserDetails}>Sign Up</button>
