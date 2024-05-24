@@ -34,7 +34,7 @@ function Dashboard() {
                 if (category === "all") {
                     response = await getProject();
                 } else if (category === "mine") {
-                    response = await getProjectById(user?.id);
+                    response = await getProjectById(user?.uid);
                 } else {
                     response = await getProjectByCategory(category);
                 }
@@ -49,25 +49,30 @@ function Dashboard() {
     }, [filter, user]); // This useEffect runs when `filter` or `user` changes
 
     return (
-        <>
-            {selectedProject === null && (
+        <> 
+            
+                <div className="filter-parent">
+                {selectedProject === null && (
                 <div className='filter'>
-                    <p className='filterBy'>Filter by:</p>
-                    <p className={`options ${filter === 'all' ? 'highlight' : ''}`} onClick={() => handleFilterChange('all')}>all</p>
-                    <p className={`options ${filter === 'mine' ? 'highlight' : ''}`} onClick={() => handleFilterChange('mine')}>mine</p>
-                    <p className={`options ${filter === 'development' ? 'highlight' : ''}`} onClick={() => handleFilterChange('development')}>development</p>
-                    <p className={`options ${filter === 'design' ? 'highlight' : ''}`} onClick={() => handleFilterChange('design')}>design</p>
-                    <p className={`options ${filter === 'marketing' ? 'highlight' : ''}`} onClick={() => handleFilterChange('marketing')}>marketing</p>
-                    <p className={`options ${filter === 'sales' ? 'highlight' : ''}`} onClick={() => handleFilterChange('sales')}>sales</p>
-                </div>
-            )}
+                        <p className='filterBy'>Filter by:</p>
+                        <p className={`options ${filter === 'all' ? 'highlight' : ''}`} onClick={() => handleFilterChange('all')}>all</p>
+                        <p className={`options ${filter === 'mine' ? 'highlight' : ''}`} onClick={() => handleFilterChange('mine')}>mine</p>
+                        <p className={`options ${filter === 'assigned' ? 'highlight' : ''}`} onClick={() => handleFilterChange('assigned')}>assigned</p>
+                        <p className={`options ${filter === 'development' ? 'highlight' : ''}`} onClick={() => handleFilterChange('development')}>development</p>
+                        <p className={`options ${filter === 'design' ? 'highlight' : ''}`} onClick={() => handleFilterChange('design')}>design</p>
+                        <p className={`options ${filter === 'marketing' ? 'highlight' : ''}`} onClick={() => handleFilterChange('marketing')}>marketing</p>
+                        <p className={`options ${filter === 'sales' ? 'highlight' : ''}`} onClick={() => handleFilterChange('sales')}>sales</p>
+                    </div>
+                    )}
+            </div>
+            
             <div className='content'>
                 {selectedProject ? (
                     <Project project={selectedProject} />
                 ) : (
                     projects.length > 0 ? (
                         projects.map(project => (
-                            <div onClick={() => handleProjectSelect(project)} key={project.id}>
+                            <div className='project-card-container' onClick={() => handleProjectSelect(project)} key={project.id}>
                                 <ProjectCard project={project} />
                             </div>
                         ))
