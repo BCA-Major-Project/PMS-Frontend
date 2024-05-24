@@ -1,11 +1,27 @@
-import './Member.css'
+import React from 'react';
+import './Member.css';
 
-function Member() {
-    return (
-      <div className='image'>
-        <img src="https://images.unsplash.com/photo-1610186593977-82a3e3696e7f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cG9ydHJhaXQlMjBwaG90b2dyYXBoeXxlbnwwfDF8MHx8fDA%3D" alt="" />
-      </div>
-    )
-  }
-  
-  export default Member
+const Member = ({ imageData, name, paddingTop, paddingRight, paddingBottom, paddingLeft }) => {
+  const imageStyle = {
+    paddingLeft:  paddingLeft || '0px',
+    paddingRight: paddingRight || '0px',
+    paddingBottom: paddingBottom || '0px',
+    paddingTop: paddingTop || '0px'
+  };
+  const getProfileImage = (data, name) => {
+    if (data) {
+        return `data:image/jpeg;base64,${data}`;
+    } else {
+        const nameParams = (name || "Unknown User").split(" ").join("+");
+        return `https://ui-avatars.com/api/?name=${nameParams}&background=random`;
+    }
+  };
+
+  return (
+    <div className='image' style={imageStyle}>
+      <img src={getProfileImage(imageData,name)} alt='avatar' className='dp' />
+    </div>
+  );
+}
+
+export default Member;
