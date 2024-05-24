@@ -96,32 +96,32 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <div className='container'>
-        <div className="header">
-          <div className="text">Sign up</div>
-          <div className="underline"></div>
+      <div className='signup-container'>
+        <div className="signup-header">
+          <div className="signup-text">Sign up</div>
+          <div className="signup-underline"></div>
         </div>
-        <div className="inputs">
-        <formcontrol className="input">
+        <div className="signup-inputs">
+        <formcontrol className="signup-input">
             <label htmlFor="avatar">Profile Picture:</label>
             <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
-            {imageError && <div className="error">{imageError}</div>}
-            <img src={imagePreviewUrl} alt="Profile Preview" className="profile-preview"/>
+            {imageError && <div className="signup-signup-error">{imageError}</div>}
+            <img src={imagePreviewUrl} alt="Profile Preview" className="signup-profile-preview"/>
           </formcontrol>
 
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={user_icon} alt="Name"/>
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='Name' id='name'/>
-            <span className="error">{errors['name']}</span>
+            <span className="signup-error">{errors['name']}</span>
           </formcontrol>
           
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input type="email" onChange={(e)=> onValueChange(e)} placeholder='Email Id' id='email'/>
-            <span className="error">{errors['email']}</span>
+            <span className="signup-error">{errors['email']}</span>
           </formcontrol>
   
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input
               type="tel"
@@ -135,30 +135,30 @@ const Signup = () => {
               placeholder="Phone no"
               id="phno"
             />
-            <span className="error">{errors['phno']}</span>
+            <span className="signup-error">{errors['phno']}</span>
           </formcontrol>
   
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
-            <span className="error">{errors['username']}</span>
+            <span className="signup-error">{errors['username']}</span>
           </formcontrol>
   
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={password_icon} alt="" />
             <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
-            <span className="error">{errors['password']}</span>
+            <span className="signup-error">{errors['password']}</span>
           </formcontrol>
   
           
         </div>
-        <div className="submit-container">
-          <button className="submit" onClick={addUserDetails}>Sign Up</button>
+        <div className="signup-submit-container">
+          <button className="signup-submit" onClick={addUserDetails}>Sign Up</button>
         </div>
         <Modal show={signupSuccess} title = "Signup Successful!" onClose={() => {setSignupSuccess(false);  navigate('/login');}}>
           <p>Signup Successful! Proceed to Login</p>
         </Modal>
-        <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
+        <div className="signup-forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
   );

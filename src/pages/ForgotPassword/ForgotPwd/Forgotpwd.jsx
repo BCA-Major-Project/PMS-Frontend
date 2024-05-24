@@ -58,24 +58,26 @@ const Forgotpwd = ({ onComplete }) => {
 
   return (
     <div className="signup">
-      <div className='container'>
-        <div className="header">
-          <div className="text">Forgot Password</div>
-          <div className="underline"></div>
+      <div className='signup-container'>
+        <div className="signup-header">
+          <div className="signup-text">Forgot Password</div>
+          <div className="signup-underline"></div>
         </div>
-        <div className="inputs">
-          <formcontrol className="input">
+        <div className="signup-inputs">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input type="email" onChange={onValueChange} placeholder='Email Id' id='email' />
             {error && <div className="error-message">{error}</div>}
           </formcontrol>
         </div>
-        <formcontrol style={{ display: 'flex', alignItems: 'center' }}>
-          <button className="submitForgot" onClick={handleSubmit} disabled={loading}>
-            Send OTP
-          </button>
-          {loading && <div className="loader"></div>}
-        </formcontrol>
+        <div style={{ textAlign: 'center' }}> {/* Centering container */}
+          <formcontrol style={{ display: 'inline-block', margin: '0 auto' }}> {/* Inline block for centering */}
+            <button className="submitForgot" onClick={handleSubmit} disabled={loading}>
+              Send OTP
+            </button>
+            {loading && <div className="loader"></div>}
+          </formcontrol>
+        </div>
         <Modal show={showModal} title='OTP Sent' onClose={() => {
             setShowModal(false);
             onComplete();  // Invoke onComplete when the modal is closed
@@ -85,6 +87,7 @@ const Forgotpwd = ({ onComplete }) => {
       </div>
     </div>
   );
+  
 };
 
 export default Forgotpwd;
