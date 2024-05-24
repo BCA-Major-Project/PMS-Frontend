@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addUser } from "../../service/api";
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import Modal from "../../components/Modal/Modal";
 
 import user_icon from '../assets/person.png';
 import email_icon from '../assets/email.png';
@@ -18,6 +20,7 @@ const initialValues = {
 };
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [signupSuccess, setSignupSuccess] = useState(false);
@@ -60,9 +63,11 @@ const Signup = () => {
       try {
         const response = await addUser(user);
         console.log('Response:', response);
-        alert('Signup successful');
+        setSignupSuccess(true);
         setUser(initialValues);
-        setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
+        setImagePreviewUrl(defaultAvatar);
+        
+         
       } catch (error) {
         console.error('Error during signup:', error);
       }
@@ -150,7 +155,9 @@ const Signup = () => {
         <div className="submit-container">
           <button className="submit" onClick={addUserDetails}>Sign Up</button>
         </div>
-        {signupSuccess && <div className="signup-success">Signup Successful!</div>}
+        <Modal show={signupSuccess} title = "Signup Successful!" onClose={() => {setSignupSuccess(false);  navigate('/login');}}>
+          <p>Signup Successful! Proceed to Login</p>
+        </Modal>
         <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
