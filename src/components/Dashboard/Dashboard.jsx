@@ -3,7 +3,7 @@ import './Dashboard.css';
 
 import Project from "../Project/Project"
 import ProjectCard from '../ProjectCard/ProjectCard';
-import { getProjectByCategory, getProjectById, getProject } from '../../service/api';
+import { getProjectByCategory, getProjectById, getProject, getAssignedProjects} from '../../service/api';
 
 function Dashboard() {
     const [user, setUser] = useState();
@@ -35,6 +35,8 @@ function Dashboard() {
                     response = await getProject();
                 } else if (category === "mine") {
                     response = await getProjectById(user?.uid);
+                }else if (category === "assigned") {
+                    response = await getAssignedProjects(user?.uid);
                 } else {
                     response = await getProjectByCategory(category);
                 }
@@ -72,8 +74,8 @@ function Dashboard() {
                 ) : (
                     projects.length > 0 ? (
                         projects.map(project => (
-                            <div className='project-card-container' onClick={() => handleProjectSelect(project)} key={project.id}>
-                                <ProjectCard project={project} />
+                            <div className='project-card-container' onClick={() => handleProjectSelect(filter === 'assigned' ? project.project : project)} key={project.id}>
+                                <ProjectCard project={filter === 'assigned' ? project.project : project}/>
                             </div>
                         ))
                     ) : (
