@@ -22,8 +22,8 @@ const Users = ({ user }) => {
         <div className='users'>
             <div key={id} className='user'>
                 <div className={`circle ${isOnline ? 'green' : 'red'}`}></div>
-                <img src={getProfileImage()} alt={`${username || "User"}'s avatar`} className='dp' />
                 <div className='username'>{username || "Unknown"}</div>
+                <img src={getProfileImage()} alt={`${username || "User"}'s avatar`} className='dp' />
             </div>
         </div>
     );

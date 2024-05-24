@@ -1,22 +1,20 @@
 .users {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 10px 2rem;
-  gap: 10px;
-  font-size: 16px;
+  align-items: flex-end;
+  padding: 7px 1.3rem;
 }
 
 .user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .dp {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -25,7 +23,6 @@
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  margin-right: 10px;
 }
 
 .green {
@@ -37,7 +34,14 @@
 }
 
 .username {
-  font-weight: bold;
+  color: rgb(15, 15, 15);
+  font-weight: 500;
+  font-size: 0.9rem;
+  max-width: 100%; /* Adjust the maximum width as needed */
+  overflow: break-word;
+  text-overflow: ellipsis; /* Add ellipsis if the text overflows */
+  white-space: nowrap;
+
 }
 
 .offline-indicator {
