@@ -137,6 +137,24 @@ export const getProjectById = async(uid)=>{
     }
 }
 
+export const getAssignedProjects = async(uid)=>{
+    uid=uid || '';
+    try{
+        return await axios.get(`${userUrl}/user/${uid}/assigned_projects`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
+
+export const getAssignedUsers = async(pid)=>{
+    pid=pid || '';
+    try{
+        return await axios.get(`${userUrl}/project/${pid}/assigned_users`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
+
 export const setUserOnline=async(uid)=>{
     const data = {"isOnline":1}
     try{
