@@ -61,7 +61,7 @@ const Project = ({ project }) => {
       
     const updatedComment = {
         ...comment,
-        project: currentProject,
+        project: project,
         user: user,
         insertionTime: formattedDateTime
     };
@@ -69,7 +69,7 @@ const Project = ({ project }) => {
     try {
         await apiAddComment(updatedComment);
         setComment(initialValues);
-        getAllComments(currentProject.id);
+        getAllComments(project.id);
     } catch (error) {
         console.error('Error adding comment:', error);
     }
