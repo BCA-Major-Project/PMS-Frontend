@@ -5,7 +5,6 @@ import project_img from '../assets/project_img.png';
 import filter from '../assets/filter.png';
 import comment from '../assets/comment.png';
 import { Link } from 'react-router-dom';
-import { addProject } from '../../service/api';
 
 const Landing = () => {
   return (
@@ -63,7 +62,6 @@ const Landing = () => {
         <p>Give your project name and you can assign the project to all user</p>
         <div className="bottom">
           <a href="#">Read more</a>
-         
         </div>
       </section>
     </div>
@@ -81,7 +79,6 @@ const Landing = () => {
         <p>Give your opinion on every project and see others</p>
         <div className="bottom">
           <a href="#">Read more</a>
-         
         </div>
       </section>
     </div>
