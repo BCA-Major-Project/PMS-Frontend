@@ -17,7 +17,7 @@ const initialValues = {
 
 
 const Project = ({ project }) => {
-  const [currentProject, setCurrentProject] = useState(project);
+  // const [currentProject, setCurrentProject] = useState(project);
   const [comments, setComments] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false); // State to control rendering of Dashboard
   const [comment,setComment] = useState(initialValues);
@@ -36,8 +36,8 @@ const Project = ({ project }) => {
   };
 
   useEffect(() => {
-    getAllComments(currentProject.id);
-  }, [currentProject.id]);
+    getAllComments(project.id);
+  }, [project.id]);
 
   const redirectToDashboard = () => {
     setShowDashboard(true); // Show Dashboard component
@@ -86,11 +86,11 @@ const Project = ({ project }) => {
       <div className="center">
         <div className="down">
           <div className="leftside">
-            <p className="proj-name">{currentProject.name}</p>
-            <p className="by">By {currentProject.user.username}</p>
-            <p className="date">Project due by {currentProject.dueDate}</p>
-            <p className="detail">{currentProject.details}</p>
-            <p className="assign-to">Project Category: {currentProject.category}</p>
+            <p className="proj-name">{project.name}</p>
+            <p className="by">By {project.user.username}</p>
+            <p className="date">Project due by {project.dueDate}</p>
+            <p className="detail">{project.details}</p>
+            <p className="assign-to">Project Category: {project.category}</p>
             <div className="member">
               <Member />
             </div>

@@ -16,8 +16,8 @@ export const addUser=async(user)=>{
 
     export const addProject=async(project)=>{
         try{
+            console.log("Your project", project)
             return await axios.post(`${userUrl}/project`,project)
-            // console.log("Your project", project)
         }catch(error)
         {
             console.log('Error while calling adduser Api ',error.message);
