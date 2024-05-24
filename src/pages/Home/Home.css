@@ -14,7 +14,7 @@
   justify-content: start;
   align-items: center;
   gap: 100px;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 }
 
 .dashboard, .project {
@@ -35,12 +35,12 @@
 
 .center .bottom {
   width: 100%;
-  padding: 0 50px 0 50px;
+  /* padding: 0 50px 0 50px; */
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 50px;
-  overflow-y: auto; /* Adding scrollbar for vertical overflow */
+  gap: 50px;/* Adding scrollbar for vertical overflow */
+  overflow-y:auto
 }
 
