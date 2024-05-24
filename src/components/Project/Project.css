@@ -13,13 +13,11 @@
 
 
 
-
-
 .back-button:hover {
   background-color: #94b9e2;
   color: #fff;
 }
-.center {
+.project-center {
   width: 80%; /* Adjust the width as needed */
   height: 100%;
   display: flex;
@@ -40,7 +38,7 @@
 .center .down {
   width: 100%;
   height: 100%;
-  padding: 0 20px 0 20px;
+  /* padding: 0 20px 0 20px; */
   display: flex;
   flex-direction: row;
   gap: 50px;
@@ -99,7 +97,7 @@
 }
 
 .down .rightside .show-comments {
-  height: calc(70vh - 200px); /* Set maximum height of .show-comments to 100% of viewport height minus 200px *
+  height: calc(70vh - 200px); 
 }
 
 
@@ -111,7 +109,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 
 .show-comments .comment-container .comment-box {
@@ -141,22 +139,31 @@
   padding-bottom: 10px;
 }
 
-.down .rightside .add-comment {
-  height: 50%;
-  margin-top: 10px;
+.down .rightside {
+  display: flex;
+  flex-direction: column;
 }
 
-.add-comment {
-  max-width: 400px;
-  width: 100%;
+.down .rightside .add-comment {
+  display: flex;
+  flex: 1; /* Allow the add-comment component to grow and shrink */
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%; /* Match the width with the parent container */
 }
+/* .add-comment {
+  max-width: 200px;
+  width: 100%;
+  /* display:flex;  
+*/
 
 .add-comment .heading{
   margin-bottom: 10px;
+  
 }
 
 .add-comment textarea {
-  width: 800%;
+  width: 100%; /* Match the width with the parent container */
   height: 70px;
   resize: vertical;
   font-size: 0.8rem;
@@ -179,4 +186,33 @@
 .add-comment button:hover {
   background-color: rgb(148, 185, 226);
   color: white;
+}
+
+.back-button-container {
+  display: flex;
+  padding: 20px;
+}
+
+.back-button {
+  background-color: #fff;
+  color: #94b9e2;
+  border: 2px solid #94b9e2;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button svg {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+.back-button:hover {
+  background-color: #94b9e2;
+  color: #fff;
 }
