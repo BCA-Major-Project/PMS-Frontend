@@ -20,9 +20,9 @@ const Userdetails = () => {
         }
     };
 
-    const deleteUserData = async (id) => {
+    const deleteUserData = async (uid) => {
         try {
-            await deleteUser(id);
+            await deleteUser(uid);
             getUsersDetails();
         } catch (error) {
             console.error("Error deleting user:", error);
@@ -50,8 +50,8 @@ const Userdetails = () => {
                 </TableHead>
                 <TableBody>
                     {users.map((user) => (
-                        <TableRow key={user.id}>
-                            <TableCell>{user.id}</TableCell>
+                        <TableRow key={user.uid}>
+                            <TableCell>{user.uid}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>{user.phno}</TableCell>
@@ -62,7 +62,7 @@ const Userdetails = () => {
                                     <div className="btn1">
                                 <Button
                                     component={Link}
-                                    to={`/edit/${user.id}`}
+                                    to={`/edit/${user.uid}`}
                                     variant="contained"
                                     color="primary"
                                     className="user-details-action-btn user-details-edit-btn"
@@ -72,7 +72,7 @@ const Userdetails = () => {
                                 </div>
                                 <div className="btn2">
                                 <Button
-                                    onClick={() => deleteUserData(user.id)}
+                                    onClick={() => deleteUserData(user.uid)}
                                     variant="contained"
                                     color="secondary"
                                     className="user-details-action-btn user-details-delete-btn"
@@ -81,7 +81,7 @@ const Userdetails = () => {
                                 </Button>
                                 <Button
                                     component={Link}
-                                    to={`/projectdetails/${user.id}`}
+                                    to={`/projectdetails/${user.uid}`}
                                     variant="contained"
                                     color="primary"
                                     className="user-details-action-btn user-details-edit-btn"

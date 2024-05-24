@@ -112,9 +112,9 @@ export const getProjectByCategory = async(category)=>{
 
 //     }
 // }
-export const deleteProject = async (id) => {
+export const deleteProject = async (uid) => {
     try {
-        return await axios.delete(`${userUrl}/projects/${id}`);
+        return await axios.delete(`${userUrl}/projects/${uid}`);
     } catch (error) {
         console.log("error while calling delete api", error.message);
     }
