@@ -18,6 +18,7 @@
 .filter .options {
     padding-right: 10px;
     border-right: 2px solid rgba(196, 194, 194, 0.7);
+    cursor: pointer;
   }
   
 .filter .highlight:hover {
