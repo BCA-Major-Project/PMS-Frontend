@@ -83,7 +83,7 @@ const Project = ({ project }) => {
           Back
         </button>
       </div>
-      <div className="center">
+      <div className="project-center">
         <div className="down">
           <div className="leftside">
             <p className="proj-name">{project.name}</p>
