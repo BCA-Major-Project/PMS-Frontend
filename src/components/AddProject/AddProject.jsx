@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
 import './AddProject.css';
+import Modal from '../Modal/Modal';
 import { addProject, getUsers } from '../../service/api';
 
 const AddProject = () => {
   const current_user = JSON.parse(localStorage.getItem('user'));
   const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalContent, setModalContent] = useState(''); // State to control modal content
   const [projectUsers, setProjectUsers] = useState({
     project: {
       name: '',
@@ -65,7 +68,8 @@ const AddProject = () => {
       (async () => {
         try {
           await addProject(updatedProjectUsers);
-          alert(`Project added successfully`);
+          setModalContent('Project added successfully'); // Set the content for the modal
+          setShowModal(true);
 
           // Reset the projectUsers state
           setProjectUsers({
@@ -80,6 +84,8 @@ const AddProject = () => {
           });
         } catch (error) {
           console.error("Error adding project:", error);
+          setModalContent('Error adding project'); // Set error message in modal
+          setShowModal(true);
         }
       })();
 
@@ -177,6 +183,7 @@ const AddProject = () => {
           </div>
         </div>
       </div>
+      {<Modal show={showModal} title = "Adding Project" onClose={() => setShowModal(false)}>{modalContent}</Modal>}
     </>
   );
 };
