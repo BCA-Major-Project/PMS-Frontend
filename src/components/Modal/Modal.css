@@ -50,19 +50,22 @@
   margin: 20px 0;
 }
 
+.modal-footer{
+  justify-content: end;
+}
+
 .button {
   padding: 10px 20px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 20px;
+  border: 2px solid rgb(148, 185, 226);
+  background-color: white;
+  color: rgb(148, 185, 226);
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
 }
 
 .button:hover {
-  background: #0056b3;
-  transform: scale(1.05);
+  background-color: rgb(148, 185, 226);
+  color: white;
 }
 
 .button:focus {

@@ -24,11 +24,6 @@
   cursor: pointer;
 }
 
-.dashboard:hover, .project:hover {
-  background-color: #dcdcdc; /* New background color on hover */
-  border-radius: 5px;
-  /* color: white; */
-}
 
 .right .heading { 
   text-align: right;

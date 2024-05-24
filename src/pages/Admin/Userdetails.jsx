@@ -58,8 +58,8 @@ const Userdetails = () => {
                             <TableCell>{user.username}</TableCell>
                             <TableCell>{user.password}</TableCell>
                             <TableCell>
-                                <div className="btn">
-                                    <div className="btn1">
+                                <div className="btnn">
+                                    
                                 <Button
                                     component={Link}
                                     to={`/edit/${user.uid}`}
@@ -69,8 +69,7 @@ const Userdetails = () => {
                                 >
                                     Edit
                                 </Button>
-                                </div>
-                                <div className="btn2">
+                                
                                 <Button
                                     onClick={() => deleteUserData(user.uid)}
                                     variant="contained"
@@ -88,7 +87,7 @@ const Userdetails = () => {
                                 >
                                     view projects
                                 </Button>
-                                </div>
+                                
                                 </div>
                             </TableCell>
                         </TableRow>

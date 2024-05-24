@@ -16,7 +16,7 @@ const Login = () => {
   const addUserDetails = async () => {
     try {
       await addUser(admin); // Assuming addUser sends the admin object to the backend for authentication
-      navigate('/adminhome', { replace: true });
+      navigate('/userdetails', { replace: true });
     } catch (error) {
       console.error('Error logging in:', error);
     }

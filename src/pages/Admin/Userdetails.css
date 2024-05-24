@@ -1,5 +1,3 @@
-/* UserDetails.css */
-
 .user-details-container {
     padding: 20px;
     text-align: center;
@@ -28,25 +26,20 @@
 .user-details-table th {
     background-color: #f2f2f2;
 }
-.btn{
+.btnn{
     display: flex;
     flex-direction: row;
-}
-.btn1{
+    gap: 10px;
     margin: 5px;
-    
 }
-.btn2{
-    position: relative;
-    top:4px;
-    
-}
+
 .user-details-action-btn {
     border-radius: 20px;
     font-weight: bold;
     padding: 8px 16px;
     margin-right: 10px; 
 }
+
 .user-details-edit-btn {
     background-color: purple !important;
     color: white !important;
