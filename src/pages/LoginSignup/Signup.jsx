@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addUser } from "../../service/api";
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import Modal from "../../components/Modal/Modal";
 
 import user_icon from '../assets/person.png';
 import email_icon from '../assets/email.png';
@@ -18,6 +20,7 @@ const initialValues = {
 };
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [signupSuccess, setSignupSuccess] = useState(false);
@@ -55,15 +58,16 @@ const Signup = () => {
       }
     }
   };
-
   const addUserDetails = async () => {
     if (validateForm()) {
       try {
         const response = await addUser(user);
         console.log('Response:', response);
-        alert('Signup successful');
+        setSignupSuccess(true);
         setUser(initialValues);
-        setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
+        setImagePreviewUrl(defaultAvatar);
+        
+         
       } catch (error) {
         console.error('Error during signup:', error);
       }
@@ -95,20 +99,14 @@ const Signup = () => {
       <div className='container'>
         <div className="header">
           <div className="text">Sign up</div>
-          {/* <div className="underline"></div> */}
+          <div className="underline"></div>
         </div>
         <div className="inputs">
-
-          <formcontrol className="image">
-            <img src={imagePreviewUrl} alt="Profile Preview" className="profile_preview"/>
-
+        <formcontrol className="input">
+            <label htmlFor="avatar">Profile Picture:</label>
             <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
-
             {imageError && <div className="error">{imageError}</div>}
-            <label className="profile">
-              Choose File
-              <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
-            </label>
+            <img src={imagePreviewUrl} alt="Profile Preview" className="profile-preview"/>
           </formcontrol>
 
           <formcontrol className="input">
@@ -156,9 +154,11 @@ const Signup = () => {
         </div>
         <div className="submit-container">
           <button className="submit" onClick={addUserDetails}>Sign Up</button>
-          {signupSuccess && <div className="signup-success">Signup Successful!</div>}
-          <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
         </div>
+        <Modal show={signupSuccess} title = "Signup Successful!" onClose={() => {setSignupSuccess(false);  navigate('/login');}}>
+          <p>Signup Successful! Proceed to Login</p>
+        </Modal>
+        <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
   );

@@ -6,187 +6,129 @@
 }
 .link{
     margin: 5px;
+    /* position: absolute; */
 }
 
 .signup{
-    height: 100vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f2f5; /* Light background color */
-    overflow: hidden;
 }
 .container{
-    position: relative;
-    bottom: 80px;
-    /* display: flex; */
+    /* position: absolute; */
+    display: flex;
     flex-direction: column;
-    /* margin-top: 10%; */
+    margin-top: 10%;
+    /* left: 50%;
+    top:50%;
+    right: 50%; */
+    /* margin: auto;
+    
+    margin-bottom: 50px; */
     background: #fff;
+    /* padding-bottom: 30px; */
     width: 600px;
-    height: 900px;
+    /* height: 700px; */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
-    padding: 30px; /* Added padding for better spacing inside the container */
+    /* align-items:center; */
 }
+
 .header{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 9px;
     width: 100%;
-    margin-bottom: 20px; /* Moved spacing to the bottom for better layout */
+    margin-top: 30px;
 }
 .text{
-    margin-right: 7px;
-    color: #333; /* Darker shade for better readability */
+    color: black;
     font-size: 48px;
     font-weight: 700;
-    margin-bottom: 5px;
 }
+
 .underline{
     width: 61px;
     height: 6px;
-    background: #333; /* Match underline color with text */
+    background: black;
     border-radius: 9px;
 }
+
 .inputs{
+    margin-top: 55px;
     display: flex;
     flex-direction: column;
     gap: 25px;
+    /* space-between:  */
 }
+
 .input{
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 60px; /* Reduced height for a sleeker look */
+    margin: auto;
+    width: 480px;
+    height: 80px;
     background: #eaeaea;
     border-radius: 6px;
-    padding: 0 20px; /* Added padding inside the input container */
 }
+
 .input img{
-    margin-right: 20px; /* Adjusted margin for better spacing */
+    margin: 0px 30px;
 }
+
 .input input{
-    flex: 1; /* Use flex to fill the remaining space */
-    height: 100%;
+    height: 50px;
+    width: 400px;
     background: transparent;
-    border: none;
+    border:none;
     outline: none;
-    color: #333; /* Darker text color */
-    font-size: 18px; /* Slightly smaller font size */
+    color: #797979;
+    font-size: 19px;
 }
+
+.forgot-password{
+    /* margin-top: 15px; */
+    margin-bottom: 10px;
+    color: #7e7979;
+    font-size: 18px;
+    width: fit-content;
+}
+
+.forgot-password span{
+    color: black;
+    cursor: pointer;
+}
+
 .submit-container{
     display: flex;
-    flex-direction: column; /* Stack the submit button and forgot-password text vertically */
-    align-items: center; /* Center align the elements */
-    margin: 20px auto; 
-    position: relative;
-    bottom: 30px;
+    gap:30px;
+    margin:60px auto;
 }
-button.submit{
+
+button .submit{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.submit{
     width: 220px;
-    height: 50px; /* Reduced height for a sleeker look */
-    color: #fff; /* White text color */
-    background: #333; /* Dark background color */
-    border: 1px solid #333; /* Border matching the background */
+    height: 59px;
+    color: black;
+    margin:20px;
+    /* background: #c0c0c0; */
+    border: 1px solid black;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    border-radius: 10px; /* Slightly rounded corners */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-    margin-bottom: 15px; /* Add space between the button and forgot-password text */
+    /* border-radius: 15px; */
 }
-button.submit:hover{
-    background: #555; /* Darker shade on hover */
-}
+
+
 .gray{
-    background: #eaeaea;
+    background: #EAEAEA;
     color: #676767;
-}
-
-
-/* Profile picture styling */
-.image {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align the image and file input */
-    justify-content: center;
-    gap: 10px; /* Space between the image and file input */
-    position: relative;
-    left: 230px;
-    bottom: 30px;
-}
-.image .profile_preview{
-    height: 200%;
-    width: 200%;
-    border-radius: 50%; /* Rounded image */
-    object-fit: cover; /* Ensure image covers the space without distortion */
-    border: 2px solid #333; /* Darker border for better visibility */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    margin: 20px auto; /* Center align the image with margin */
-}
-.profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 40px;
-    position: relative;
-    left: 19px;
-    bottom: 5px;
-    color: #fff;
-    background: #333;
-    border: 1px solid #333;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 6px; /* Slightly rounded corners */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-}
-
-.profile:hover {
-    background: #555; /* Darker shade on hover */
-}
-.profile input[type="file"] {
-    display: none; /* Hide the default file input */
-}
-
-/* Error message styling */
-.error{
-    color: #d9534f; /* Bootstrap red color for error */
-    font-size: 14px; /* Smaller font size for error message */
-    /* margin-top: 5px;  */
-}
-
-/* Adjustments for mobile view */
-@media (max-width: 600px){
-    .container{
-        width: 90%; /* Adjust width for smaller screens */
-        margin-top: 20%; /* Adjust top margin for better positioning */
-    }
-    .input{
-        width: 100%; /* Full width inputs */
-        height: 50px; /* Adjusted height for smaller screens */
-    }
-    button.submit{
-        width: 100%; /* Full width button */
-    }
-}
-.forgot-password{
-    color: #000000;
-    font-size: 15px;
-    /* width: fit-content; */
-    /* Center align the forgot password text */
-    position: relative;
-}
-.forgot-password span{
-    color: #333;
-    cursor: pointer;
-    font-weight: bold; /* Make the link text bold */
 }
 
 .profile-preview {
