@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Member from '../../components/Members/Member.jsx';
 import Comment from '../../components/Comment/Comment.jsx';
-import { addComment as apiAddComment, getComments } from '../../service/api.js';
+import { addComment as apiAddComment, getComments, getAssignedUsers } from '../../service/api.js';
 import Dashboard from '../../components/Dashboard/Dashboard'; // Import the Dashboard component
 
 import './Project.css';
@@ -19,6 +19,7 @@ const initialValues = {
 const Project = ({ project }) => {
   // const [currentProject, setCurrentProject] = useState(project);
   const [comments, setComments] = useState([]);
+  const [assignedUsers, setAssignedUsers] = useState([]);
   const [showDashboard, setShowDashboard] = useState(false); // State to control rendering of Dashboard
   const [comment,setComment] = useState(initialValues);
 
@@ -30,6 +31,14 @@ const Project = ({ project }) => {
       console.error('Error fetching comments:', error);
     }
   };
+  const getCurrentAssignedUsers = async (pid) => {
+    try {
+      const response = await getAssignedUsers(pid);
+      setAssignedUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  };
   const onValueChange = (e) => {
     const { id, value } = e.target;
     setComment({ ...comment, [id]: value });
@@ -37,6 +46,7 @@ const Project = ({ project }) => {
 
   useEffect(() => {
     getAllComments(project.id);
+    getCurrentAssignedUsers(project.id);
   }, [project.id]);
 
   const redirectToDashboard = () => {
@@ -73,7 +83,8 @@ const Project = ({ project }) => {
     } catch (error) {
         console.error('Error adding comment:', error);
     }
-};
+
+  };
 
 
   return (
@@ -87,22 +98,31 @@ const Project = ({ project }) => {
         <div className="down">
           <div className="leftside">
             <p className="proj-name">{project.name}</p>
-            <p className="by">By {project.user.username}</p>
-            <p className="date">Project due by {project.dueDate}</p>
-            <p className="detail">{project.details}</p>
-            <p className="assign-to">Project Category: {project.category}</p>
+            <p className="category">Category: {project.category}</p>
+            <p className="date">Project due by {new Date(project.dueDate).toDateString()}</p>            <p className="detail">{project.details}</p>
             <div className="member">
-              <Member />
+              <p className="by">By {project.user.username}</p>
+              <Member imageData={project.user.image} name= {project.user.name} />
+              {assignedUsers && assignedUsers.length > 0 && <p className="assigned">Assigned to</p>}
+              <div className="assigned-avatar">
+              {assignedUsers && assignedUsers.map((user) => (
+                <Member imageData={user.user.image} name= {user.user.name} />
+              ))}
+            </div>
             </div>
           </div>
           <div className="rightside">
             <p className="heading">Project comments</p>
             <div className="show-comments">
-              <div className="comment-container">
-                {comments.map((comment, index) => (
+            <div className="comment-container">
+              {comments.length > 0 ? (
+                comments.map((comment, index) => (
                   <Comment key={index} comment={comment} />
-                ))}
-              </div>
+                ))
+              ) : (
+                <p className='nothintoshow'>Nothing to show here!</p>
+              )}
+            </div>
             </div>
             <div className="add-comment">
               <p className="heading">Add comment</p>

@@ -56,35 +56,44 @@
 
 .down .leftside .proj-name {
   font-weight: 700;
+  font-size: 1.5rem;
   margin-bottom: 2px;
 }
 
-.down .leftside .by {
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
 .down .leftside .date {
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: grey;
+  font-size: 1rem;
+  font-weight: 400;
   margin-bottom: 20px;
 }
 
 .down .leftside .detail {
-  color: rgb(136, 135, 135);
-  font-weight: 600;
+  padding-top: 1rem;
+  color: rgb(87, 87, 87);
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
-.down .leftside .assign-to {
+.down .leftside .category {
   font-size: 0.8rem;
   color: rgb(105, 105, 105);
   font-weight: 700;
-  margin-bottom: 0px;
+  margin-bottom: 7px;
 }
 
 .down .leftside .member {
   margin-top: 10px;
+}
+.down .leftside .member .by{
+  color: #3e3e3e;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.down .leftside .member .assigned{
+  margin-top: 10px;
+  color: #3e3e3e;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .center .down .rightside {
@@ -160,6 +169,15 @@
 .add-comment .heading{
   margin-bottom: 10px;
   
+}
+
+.assigned-avatar{
+  display: flex;
+}
+
+.nothintoshow{
+  font-size: 1.5rem;
+  color: #3e3e3e5c;
 }
 
 .add-comment textarea {
