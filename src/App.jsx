@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Landing from './pages/LoginSignup/Landing';
+import Landing from './pages/Landing/Landing';
 import Adminlogin from './pages/Admin/Adminlogin';
 
 import Signup from './pages/LoginSignup/Signup';
