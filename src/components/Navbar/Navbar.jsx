@@ -32,6 +32,7 @@
 import React from 'react';
 import { setUserOffline } from '../../service/api';
 import './Navbar.css';
+import logo from '../../pages/assets/logo.png';
 
 function TopNav() {
   const handleLogout = () => {
@@ -48,7 +49,7 @@ function TopNav() {
     <div className='top'>
       <div className='logo'>
         <img
-          src='https://static.vecteezy.com/system/resources/previews/024/553/853/non_2x/colorful-eagle-head-logo-pop-art-style-eagle-face-sticker-pastel-cute-colors-ai-generated-png.png'
+          src= {logo}
           alt=''
         />
       </div>
