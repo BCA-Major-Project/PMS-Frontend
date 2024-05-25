@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs';
 import './NewPwd.css';
 import email_icon from '../../assets/email.png';
 import Modal from '../../../components/Modal/Modal'; // Adjust the path as necessary
