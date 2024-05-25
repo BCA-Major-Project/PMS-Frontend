@@ -22,7 +22,7 @@ function App() {
           <Route path="/signup" element={<Signup/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/forgotpwd" element={<Forgotpwd/>} />
-          <Route path="/userdetails" element={<Userdetails/>} />
+          <Route path="/userdetails" element={<Protected Component={Userdetails}/>} />
           <Route path="/projectdetails/:uid" element={<ProjectDetails/>} />
           <Route path="/adminlogin" element={<Adminlogin/>} />
           <Route path="/edit/:id" element={<EditUser/>} />

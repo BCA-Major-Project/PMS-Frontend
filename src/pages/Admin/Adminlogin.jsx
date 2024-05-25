@@ -29,8 +29,8 @@ const Login = () => {
       const authData = response.data;
       if (authData && authData.admid !== "") {
         localStorage.setItem("data", authData.admid);
-        localStorage.setItem("isLoggedIn", "true");
-        navigate('/adminhome', { replace: true });
+        localStorage.setItem("isAdminLoggedIn", "true");
+        navigate('/userDetails', { replace: true });
       } else {
         console.log("Invalid credentials");
       }
