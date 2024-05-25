@@ -24,7 +24,7 @@
 }
 
 .top .logo {
-    width: 300px;
+    width: 250px;
     overflow: hidden; /* Ensure the image fits within the circle */
     margin-top: 20px;
     display: flex;
@@ -38,4 +38,5 @@
     width: 100%; /* Ensure the image uses the full width of the container */
     height: auto; /* Maintain aspect ratio */
     padding: 0;
+    opacity: 0.7; 
 }
