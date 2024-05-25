@@ -18,6 +18,9 @@ function Dashboard() {
     const handleProjectSelect = (project) => {
         setSelectedProject(project);
     };
+    const handleBackToDashboard = () => {
+        setSelectedProject(null);
+    };
 
     useEffect(() => {
         const getUserFromStorage = () => {
@@ -70,7 +73,7 @@ function Dashboard() {
             
             <div className='content'>
                 {selectedProject ? (
-                    <Project project={selectedProject} />
+                    <Project project={selectedProject} onBack={handleBackToDashboard} />
                 ) : (
                     projects.length > 0 ? (
                         projects.map(project => (

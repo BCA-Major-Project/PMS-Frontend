@@ -16,7 +16,7 @@ const initialValues = {
 
 
 
-const Project = ({ project }) => {
+const Project = ({ project, onBack }) => {
   // const [currentProject, setCurrentProject] = useState(project);
   const [comments, setComments] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
@@ -90,7 +90,7 @@ const Project = ({ project }) => {
   return (
     <div className="outer-container">
       <div className="back-button-container">
-        <button className="back-button" onClick={redirectToDashboard}>
+        <button className="back-button" onClick={onBack}>
           Back
         </button>
       </div>
