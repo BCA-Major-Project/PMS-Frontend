@@ -14,13 +14,19 @@
   }
   
   .comment-box .member-name .user-name {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
   
   .comment-container .comment-box .comment {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    color: rgb(59, 59, 59);
     margin-top: 10px;
-    font-weight: 600;
+    font-weight: 500;
     padding-bottom: 10px;
+  }
+  .time{
+    color: rgb(76, 76, 76);
+    font-weight: 400;
+    font-size: 0.8rem;
   }
