@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
 import './AddProject.css';
-import { addProject, getUsers, getPublicUsers } from '../../service/api';
+import Modal from '../Modal/Modal';
+import { addProject, getUsers } from '../../service/api';
 
 const AddProject = () => {
-  const [projectOBJ, setProjectOBJ] = useState({
-    name: '',
-    details: '',
-    dueDate: '',
-    category: ''
-  });
+  const current_user = JSON.parse(localStorage.getItem('user'));
   const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalContent, setModalContent] = useState(''); // State to control modal content
   const [projectUsers, setProjectUsers] = useState({
-    project : {
+    project: {
       name: '',
       details: '',
       dueDate: '',
-      category: 'sales'
+      category: 'sales',
+      user: {}
     },
     users: []
   });
@@ -27,149 +26,164 @@ const AddProject = () => {
 
   const getUsersDetails = async () => {
     try {
-      // const response = await getPublicUsers();
       const response = await getUsers();
-      setUsers(response.data);
+      const currentUser = JSON.parse(localStorage.getItem('user'));
+  
+      // Filter out the current user from the list of users
+      const filteredUsers = response.data.filter(user => user.uid !== currentUser.uid);
+  
+      setUsers(filteredUsers);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
   };
 
   const handleCategorySelect = (selectedList) => {
-    const assignedToIds = selectedList.map(user => user);
-    setProjectUsers({ ...projectUsers, users: assignedToIds });
+    setProjectUsers((currentState) => ({
+      ...currentState,
+      users: selectedList
+    }));
   };
 
   const handleCategoryRemove = (removedList) => {
-    const remainingAssignees = projectUsers.users.filter(
-      user => !removedList.some(removed => removed.id === user.id)
-    );
-    setProjectUsers({ ...projectUsers, users: remainingAssignees });
+    setProjectUsers((currentState) => ({
+      ...currentState,
+      users: currentState.users.filter(
+        user => !removedList.some(removed => removed.uid === user.uid)
+      )
+    }));
   };
 
   const addProjectDetails = async () => {
-    console.log("Raw project without users : ", projectOBJ)
-    setProjectUsers(currentState => ({
-     ...currentState,
-     project: {
-       name: projectOBJ.name,
-       details: projectOBJ.details,
-       dueDate: projectOBJ.dueDate,
-       category: projectOBJ.category
-     }
-   }));   try {
-      await addProject(projectUsers);
-      alert(`Project added successfully`);
-      setProjectOBJ({
-        name: '',
-        details: '',
-        dueDate: '',
-        category: ''
-      });
-      setProjectUsers({
-        project : {
-          name: '',
-          details: '',
-          dueDate: '',
-          category: 'sales'
-        },
-        users: []
-      }) // Reset form fields
-    } catch (error) {
-      console.error("Error adding project:", error);
-    }
+
+    setProjectUsers((currentState) => {
+      const updatedProjectUsers = {
+        ...currentState,
+        project: {
+          ...currentState.project,
+          user: current_user
+        }
+      };
+
+      (async () => {
+        try {
+          await addProject(updatedProjectUsers);
+          setModalContent('Project added successfully'); // Set the content for the modal
+          setShowModal(true);
+
+          // Reset the projectUsers state
+          setProjectUsers({
+            project: {
+              name: '',
+              details: '',
+              dueDate: '',
+              category: 'sales',
+              user: {}
+            },
+            users: []
+          });
+        } catch (error) {
+          console.error("Error adding project:", error);
+          setModalContent('Error adding project'); // Set error message in modal
+          setShowModal(true);
+        }
+      })();
+
+      return updatedProjectUsers;
+    });
   };
 
   return (
     <>
       <h1>Create New Project</h1>
-      <div class='main'>
-      
-      <div className='proj'>
-        
-        <div className='details'>
+      <div className='main'>
+        <div className='proj'>
+          <div className='details'>
+            <div className='input-addProj'>
+              <label htmlFor="projectName">Project Name:</label>
+              <input
+                type="text"
+                value={projectUsers.project.name}
+                onChange={(e) => setProjectUsers(currentState => ({
+                  ...currentState,
+                  project: {
+                    ...currentState.project,
+                    name: e.target.value
+                  }
+                }))}
+                placeholder='Enter Project Name'
+              />
+            </div>
 
-          <div className='input-addProj'>
-            <label htmlFor="projectName">Project Name:</label>
-            <input
-  type="text"
-  value={projectUsers.project.name}
-  onChange={(e) => setProjectUsers(currentState => ({
-    ...currentState,
-    project: {
-      ...currentState.project,
-      name: e.target.value
-    }
+            <div className='input-addProj textarea'>
+              <label htmlFor="description">Description:</label>
+              <textarea
+                value={projectUsers.project.details}
+                onChange={(e) => setProjectUsers(currentState => ({
+                  ...currentState,
+                  project: {
+                    ...currentState.project,
+                    details: e.target.value
+                  }
+                }))}
+                placeholder='Enter Project Description'
+              ></textarea>
+            </div>
 
-  }))}
-  
-  placeholder='Enter Project Name'
-/>          </div>
+            <div className='input-addProj projDate'>
+              <label htmlFor="dueDate">Due Date:</label>
+              <input
+                type="date"
+                value={projectUsers.project.dueDate}
+                onChange={(e) => setProjectUsers(currentState => ({
+                  ...currentState,
+                  project: {
+                    ...currentState.project,
+                    dueDate: e.target.value
+                  }
+                }))}
+              />
+            </div>
 
-          <div className='input-addProj textarea'>
-            <label htmlFor="description">Description:</label>
-            <textarea
-              value={projectUsers.project.details}
-              onChange={(e) => setProjectUsers(currentState => ({
-                ...currentState,
-                project: {
-                  ...currentState.project,
-                  details: e.target.value
-                }
-                
-              }))}
-              placeholder='Enter Project Description'
-            ></textarea>
-          </div>
+            <div className='input-addProj'>
+              <label htmlFor="projectCategory">Project Category:</label>
+              <select
+                value={projectUsers.project.category}
+                onChange={(e) => setProjectUsers(currentState => ({
+                  ...currentState,
+                  project: {
+                    ...currentState.project,
+                    category: e.target.value
+                  }
+                }))}
+              >
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="sales">Sales</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </div>
 
-          <div className='input-addProj projDate'>
-            <label htmlFor="dueDate">Due Date:</label>
-            <input type="date" value={projectUsers.project.dueDate} onChange={(e) => setProjectUsers(currentState => ({
-    ...currentState,
-    project: {
-      ...currentState.project,
-      dueDate: e.target.value
-    }
-    
-  }))}/>
-          </div>
+            <div className='input-addProj'>
+              <label htmlFor="assignTo">Assign to:</label>
+              <Multiselect
+                options={users}
+                selectedValues={projectUsers.users}
+                onSelect={handleCategorySelect}
+                onRemove={handleCategoryRemove}
+                displayValue="username"
+                placeholder="Select Assignees"
+                className='multiselect'
+              />
+            </div>
 
-          <div className='input-addProj'>
-            <label htmlFor="projectCategory">Project Category:</label>
-            <select value={projectUsers.project.category} onChange={(e) => setProjectUsers(currentState => ({
-    ...currentState,
-    project: {
-      ...currentState.project,
-      category: e.target.value
-    }
-    
-  }))}>
-              <option value="development">Development</option>
-              <option value="design">Design</option>
-              <option value="sales">Sales</option>
-              <option value="marketing">Marketing</option>
-            </select>
-          </div>
-          
-          <div className='input-addProj'>
-            <label htmlFor="assignTo">Assign to:</label>
-            <Multiselect
-              options={users}
-              selectedValues={users.filter(user => projectUsers.users.includes(user))}
-              onSelect={handleCategorySelect}
-              onRemove={handleCategoryRemove}
-              displayValue="username"
-              placeholder="Select Assignees"
-              className='multiselect'
-            />
-          </div>
-
-          <div className='add-button'>
-            <button className="submit" onClick={addProjectDetails}>Add Project</button>
+            <div className='add-button'>
+              <button className="submit" onClick={addProjectDetails}>Add Project</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      {<Modal show={showModal} title = "Adding Project" onClose={() => setShowModal(false)}>{modalContent}</Modal>}
     </>
   );
 };

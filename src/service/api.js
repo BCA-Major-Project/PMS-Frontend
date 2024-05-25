@@ -17,8 +17,8 @@ export const addUser=async(user)=>{
 
     export const addProject=async(project)=>{
         try{
+            console.log("Your project", project)
             return await axios.post(`${userUrl}/project`,project)
-            // console.log("Your project", project)
         }catch(error)
         {
             console.log('Error while calling adduser Api ',error.message);
@@ -113,9 +113,9 @@ export const getProjectByCategory = async(category)=>{
 
 //     }
 // }
-export const deleteProject = async (id) => {
+export const deleteProject = async (uid) => {
     try {
-        return await axios.delete(`${userUrl}/projects/${id}`);
+        return await axios.delete(`${userUrl}/projects/${uid}`);
     } catch (error) {
         console.log("error while calling delete api", error.message);
     }
@@ -133,6 +133,24 @@ export const getProjectById = async(uid)=>{
     uid=uid || '';
     try{
         return await axios.get(`${userUrl}/projects/${uid}`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
+
+export const getAssignedProjects = async(uid)=>{
+    uid=uid || '';
+    try{
+        return await axios.get(`${userUrl}/user/${uid}/assigned_projects`);
+    }catch(error){
+        console.log('Error while calling getProject api',error.message);
+    }
+}
+
+export const getAssignedUsers = async(pid)=>{
+    pid=pid || '';
+    try{
+        return await axios.get(`${userUrl}/project/${pid}/assigned_users`);
     }catch(error){
         console.log('Error while calling getProject api',error.message);
     }

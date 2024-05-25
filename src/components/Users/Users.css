@@ -1,50 +1,51 @@
-/* Users.css */
-
 .users {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align items to start */
-    padding: 10px 9rem; /* Adjust padding */
-    gap: 10px;
-    font-size: 16px;
-  }
-  
-  .user {
-    display: flex;
-    align-items: center;
-  }
-  
-  .dp {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ccc; /* Default background color for avatar */
-    margin-right: 10px; /* Add margin to separate avatar from username */
-  }
-  
-  .circle {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .green {
-    background-color: green; /* Green circle for online status */
-  }
-  
-  .red {
-    background-color: red; /* Red circle for offline status */
-  }
-  
-  .username {
-    font-weight: bold;
-  }
-  
-  .offline-indicator {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 7px 1.3rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dp {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.circle {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.username {
+  color: rgb(15, 15, 15);
+  font-weight: 500;
+  font-size: 0.9rem;
+  max-width: 100%; /* Adjust the maximum width as needed */
+  overflow: break-word;
+  text-overflow: ellipsis; /* Add ellipsis if the text overflows */
+  white-space: nowrap;
+
+}
+
+.offline-indicator {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

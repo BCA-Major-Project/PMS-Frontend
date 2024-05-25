@@ -3,10 +3,12 @@
     padding: 10px;
     margin: 20px;
     font-size: 2rem;
+    opacity: 0.8;
 }
 .right{
     width: 20%;
     height: 100%;
     border-left: 2px solid rgba(196, 194, 194, 0.7);
     overflow-y: auto;
+    overflow-x: break-word;
 }

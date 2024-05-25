@@ -1,40 +1,62 @@
+.filter-parent{
+  width:100%;
+  padding: 0 30px 0 30px;
+}
 .filter {
     width: 100%;
     border: 2px solid transparent;
     border-radius: 5px;
     background-color: white;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 10px;
+    padding: 5px 0 0 15px;
     font-size: 0.88rem;
   }
   
   .filter .filterBy {
     padding-right: 20px;
   }
-  
+/* .main-body{
+  padding: 0 10px 0 10px;
+}
+   */
 .filter .options {
     padding-right: 10px;
     border-right: 2px solid rgba(196, 194, 194, 0.7);
+    cursor: pointer;
   }
   
 .filter .highlight:hover {
     color: rgb(148, 185, 226);
     cursor: pointer;
   }
+  .options {
+    cursor: pointer;
+    user-select: none;
+  }
   
+  .highlight {
+    color:#0056b3; /* Define the highlight color */
+    font-weight: bold; /* Make the text bold or apply any other styling */
+    cursor: none;
+    
+  }
 .content {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     gap: 20px;
-    padding: 0 20px 0 0;
+    padding: 0 30px 0 30px;
     overflow-y: auto; /* Adding scrollbar for vertical overflow */
     overflow-x: hidden;
+  }
+  .project-card-container {
+    flex: 1 1 200px; /* Adjust the basis as needed */
+    /* flex-grow: 1; This would make each card grow to fill the space */
   }
   .not_found {
     font-size: 20px;

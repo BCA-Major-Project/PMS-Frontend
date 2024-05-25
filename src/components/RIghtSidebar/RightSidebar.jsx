@@ -20,7 +20,7 @@ const RightBlock = () => {
         getUsersDetails();
     },[])
     return (
-        <div className='right common'>
+        <div className='right'>
             <div className='heading'>All Users</div>
             {users.map((user)=>(
                 <Users user={user}/>

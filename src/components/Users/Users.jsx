@@ -21,11 +21,9 @@ const Users = ({ user }) => {
     return (
         <div className='users'>
             <div key={id} className='user'>
-                <div>
-                    <div className={`circle ${isOnline ? 'green' : 'red'}`}></div>
-                </div>
+                <div className={`circle ${isOnline ? 'green' : 'red'}`}></div>
                 <div className='username'>{username || "Unknown"}</div>
-                <img src={getProfileImage()} alt={`${username || "User"}'s avatar`} />
+                <img src={getProfileImage()} alt={`${username || "User"}'s avatar`} className='dp' />
             </div>
         </div>
     );

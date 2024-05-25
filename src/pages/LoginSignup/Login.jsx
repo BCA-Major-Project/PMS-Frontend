@@ -46,13 +46,13 @@ const Login = () => {
 
   return (
     <div className="signup">
-      <div className="container">
-        <div className="header">
-          <div className="text">Login</div>
-          <div className="underline"></div>
+      <div className="signup-container">
+        <div className="signup-header">
+          <div className="signup-text">Login</div>
+          <div className="signup-underline"></div>
         </div>
-        <div className="inputs">
-          <div className="input">
+        <div className="signup-inputs">
+          <div className="signup-input">
             <img src={email_icon} alt="" />
             <input
               type="text"
@@ -62,7 +62,7 @@ const Login = () => {
               onChange={onValueChange}
             />
           </div>
-          <div className="input">
+          <div className="signup-input">
             <img src={password_icon} alt="" />
             <input
               type="password"
@@ -74,15 +74,15 @@ const Login = () => {
             />
           </div>
         </div>
-        <div className="submit-container">
-          <button className="submit" onClick={handleLogin}>
+        <div className="signup-submit-container">
+          <button className="signup-submit" onClick={handleLogin}>
             Submit
           </button>
         </div>
-        <div className="forgot-password">
+        <div className="signup-forgot-password">
           Forgot Password? <Link to="/Forgotpwd"><span>Click Here</span></Link>
         </div>
-        <div className="forgot-password">
+        <div className="signup-forgot-password">
           Don't have an account? <Link to="/Signup"><span>Register</span></Link>
         </div>
       </div>

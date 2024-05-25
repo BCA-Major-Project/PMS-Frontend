@@ -1,13 +1,13 @@
-
-.top{
+.top {
     width: 100%;
     color: black;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px 0 50px;
+    padding: 0 50px;
 }
-.top .logout{
+
+.top .logout {
     border: 2px solid rgb(148, 185, 226);
     padding: 8px;
     margin-top: 5px;
@@ -17,20 +17,26 @@
     cursor: pointer;
     border-radius: 5px;
 }
-.top .logout:hover{
+
+.top .logout:hover {
     background-color: rgb(148, 185, 226);
     color: white;
 }
-.top .logo{
-    width: 50px;
-    height: 50px;
-    color: black;
-    border-radius: 50%;
+
+.top .logo {
+    width: 250px;
+    overflow: hidden; /* Ensure the image fits within the circle */
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
-.top .logo img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%; 
-    object-fit: cover; /* This ensures the image covers the entire container */
+
+.top .logo img {
+    object-fit: cover;
+    width: 100%; /* Ensure the image uses the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    padding: 0;
+    opacity: 0.7; 
 }

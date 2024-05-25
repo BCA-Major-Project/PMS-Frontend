@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
 import { addUser } from "../../service/api";
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import Modal from "../../components/Modal/Modal";
 
 import user_icon from '../assets/person.png';
 import email_icon from '../assets/email.png';
@@ -19,6 +21,7 @@ const initialValues = {
 };
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [signupSuccess, setSignupSuccess] = useState(false);
@@ -74,51 +77,68 @@ const Signup = () => {
   };
   const addUserDetails = async () => {
     if (validateForm()) {
-      await addUser(user);
-      alert('Signup successful');
-      setUser(initialValues);
-      setImagePreviewUrl(defaultAvatar); // Reset to default image after signup
+      try {
+        const response = await addUser(user);
+        console.log('Response:', response);
+        setSignupSuccess(true);
+        setUser(initialValues);
+        setImagePreviewUrl(defaultAvatar);
+        
+         
+      } catch (error) {
+        console.error('Error during signup:', error);
+      }
     }
   };
 
   const validateForm = () => {
     let formIsValid = true;
+    const newErrors = {};
+    console.log("validating form");
+  
     for (const key in user) {
-      if (!user[key]) {
-        setErrors({ ...errors, [key]: `${key} is required` });
+      console.log("Checking key:", key); // Log each key being checked
+      if (key !== 'image' && !user[key]) {
+        newErrors[key] = `${key} is required`;
         formIsValid = false;
+        console.log("Error found in key:", key); // Log if an error is found
       }
     }
+  
+    console.log("Errors after loop:", newErrors); // Log all errors found
+    setErrors(newErrors);
+    console.log("Form is valid:", formIsValid); // Final validity status
     return formIsValid;
   };
 
   return (
     <div className="signup">
-      <div className='container'>
-        <div className="header">
-          <div className="text">Sign up</div>
-          <div className="underline"></div>
+      <div className='signup-container'>
+        <div className="signup-header">
+          <div className="signup-text">Sign up</div>
+          <div className="signup-underline"></div>
         </div>
-        <div className="inputs">
-          <formcontrol className="input">
+        <div className="signup-inputs">
+        <formcontrol className="signup-input">
             <label htmlFor="avatar">Profile Picture:</label>
             <input type="file" id="avatar" accept="image/*" onChange={handleImageChange} />
-            {imageError && <div className="error">{imageError}</div>}
-            <img src={imagePreviewUrl} alt="Profile Preview" className="profile-preview"/>
+            {imageError && <div className="signup-signup-error">{imageError}</div>}
+            <img src={imagePreviewUrl} alt="Profile Preview" className="signup-profile-preview"/>
           </formcontrol>
-  
-          <formcontrol className="input">
+
+          <formcontrol className="signup-input">
             <img src={user_icon} alt="Name"/>
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='Name' id='name'/>
-            <span className="error">{errors['name']}</span>
+            <span className="signup-error">{errors['name']}</span>
           </formcontrol>
           
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input type="email" onChange={(e)=> onValueChange(e)} placeholder='Email Id' id='email'/>
-            <span className="error">{errors['email']}</span>
+            <span className="signup-error">{errors['email']}</span>
           </formcontrol>
-          <formcontrol className="input">
+  
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input
               type="tel"
@@ -132,25 +152,30 @@ const Signup = () => {
               placeholder="Phone no"
               id="phno"
             />
-            <span className="error">{errors['phno']}</span>
+            <span className="signup-error">{errors['phno']}</span>
           </formcontrol>
   
-          <formcontrol className="input">
+          <formcontrol className="signup-input">
             <img src={email_icon} alt="" />
             <input type="text" onChange={(e)=> onValueChange(e)} placeholder='username' id='username'/>
-            <span className="error">{errors['username']}</span>
-          </formcontrol >
-          <formcontrol className="input">
+            <span className="signup-error">{errors['username']}</span>
+          </formcontrol>
+  
+          <formcontrol className="signup-input">
             <img src={password_icon} alt="" />
             <input type="password" placeholder='Password' id='password' autoComplete='current-password' onChange={(e)=> onValueChange(e)}/>
-            <span className="error">{errors['password']}</span>
+            <span className="signup-error">{errors['password']}</span>
           </formcontrol>
+  
+          
         </div>
-        <div className="submit-container">
-          <button className="submit" onClick={addUserDetails}>Sign Up</button>
+        <div className="signup-submit-container">
+          <button className="signup-submit" onClick={addUserDetails}>Sign Up</button>
         </div>
-        {signupSuccess && <div className="signup-success">Signup Successful!</div>}
-        <div className="forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
+        <Modal show={signupSuccess} title = "Signup Successful!" onClose={() => {setSignupSuccess(false);  navigate('/login');}}>
+          <p>Signup Successful! Proceed to Login</p>
+        </Modal>
+        <div className="signup-forgot-password">Already got an account? <Link to="/Login"><span>Login</span></Link></div>
       </div>
     </div>
   );
