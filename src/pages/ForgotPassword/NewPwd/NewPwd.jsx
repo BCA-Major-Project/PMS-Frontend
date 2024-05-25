@@ -30,7 +30,8 @@ const NewPwd = () => {
     }
   
     try {
-      const userEmail = localStorage.getItem("user_email");
+      const userEmail = localStorage.getItem("email");
+      console.log(userEmail);
       const result = await getLogin(userEmail);
       const user = result.data;
       const newHashedPassword = hashPassword(newPassword);
